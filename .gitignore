@@ -1,0 +1,13 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Sandbox
+sandbox.dmg
+/sandbox/
+test.txt
+
+# OS
+.DS_Store
