@@ -1,65 +1,68 @@
-# importing libraries
-import shutil
 import os
+import shutil
 from pathlib import Path
-import subprocess 
 import docker
 
-class sandbox_env():
-    def __init__(self):
-        # Get the directory of this script (scripts/)
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        # The project root is one level up
-        self.root_dir = os.path.dirname(script_dir)
-        self.path = os.path.join(self.root_dir, 'sandbox')
-        self.cores = 2
-        self.ram = 2048
-        self.memory = 4096
-        self.create_sandbox(self.cores, self.ram, self.memory)
+class SandboxEnv:
+    def __init__(self, cores: int = 2, ram: int = 2048, memory: int = 4096):
+        # Get the directory of this script and project root
+        script_dir = Path(__file__).resolve().parent
+        self.root_dir = script_dir.parent
+        self.path = self.root_dir / "sandbox"
+        
+        self.cores = cores
+        self.ram = ram
+        self.memory = memory
+        
+        self.create_sandbox()
 
-    def create_sandbox(self, cores, ram, memory):
-        if os.path.exists(self.path):
+    def create_sandbox(self):
+        """Cleans the sandbox directory and deploys the Docker environment."""
+        # Clean up existing sandbox directory
+        if self.path.exists():
             shutil.rmtree(self.path)
             print(f"Sandbox directory deleted at {self.path}")
-        
+
         try:
-            os.makedirs(self.path, exist_ok=True)
+            # Create the sandbox directory
+            self.path.mkdir(parents=True, exist_ok=True)
             print(f"Sandbox directory created at {self.path}")
 
-            # Define the DMG path in the root directory
-            dmg_path = os.path.join(self.root_dir, "sandbox.dmg")
-            if os.path.exists(dmg_path):
-                os.remove(dmg_path)
-                print(f"Existing DMG deleted at {dmg_path}")
-
-            cmd = ["hdiutil", "create", "-size", f"{memory}m", "-fs", "APFS", "-volname", "sandbox", dmg_path]
-            subprocess.run(cmd, check=True)
-            print(f"New DMG created at {dmg_path}")
-
+            # Initialize Docker client
             client = docker.from_env()
-            # Build using the root_dir where the dockerfile is located
-            # Note: Docker usually looks for 'Dockerfile' (Capital 'D')
-            image, logs = client.images.build(path=self.root_dir, tag="sandbox", rm=True)
+
+            # Build the Docker image
+            print("Building Docker image 'sandbox'...")
+            client.images.build(path=str(self.root_dir), tag="sandbox", rm=True)
             print("Docker image 'sandbox' built successfully.")
 
-            container = client.containers.run( 
-                image="sandbox", 
-                detach=True, 
+            # Remove existing container if it exists
+            try:
+                existing_container = client.containers.get("sandbox")
+                print("Removing existing sandbox container...")
+                existing_container.stop()
+                existing_container.remove()
+            except docker.errors.NotFound:
+                pass
+
+            # Run the container with resource limits
+            client.containers.run(
+                image="sandbox",
+                detach=True,
                 name="sandbox",
-                mem_limit=f"{ram}m",
-                nano_cpus=int(cores * 1e9),
+                storage_opt={"size": f"{self.memory}G"},
+                mem_limit=f"{self.ram}m",
+                nano_cpus=int(self.cores * 1e9),
+                ports={8501: 8501, 8000: 8000},
                 volumes={
-                    self.path: {"bind": "/app/data", "mode": "rw"}
+                    str(self.path): {"bind": "/app/data", "mode": "rw"},
+                    str(self.root_dir / "scripts"): {"bind": "/app/scripts", "mode": "rw"}
                 }
             )
+            print("🚀 Sandbox container 'sandbox' started successfully!")
+
+            print("📁 Dashboard access: http://localhost:8501")
 
         except Exception as e:
+
             print(f"Error creating sandbox: {e}")
-
-    
-
-        
-            
-
-
-
