@@ -1,11 +1,11 @@
-# python slim image
+# Docker Resource Sandbox for Stress Testing
 FROM python:3.12-slim
 
 # set working directory
 WORKDIR /app
 
-# install dependencies
-RUN pip install --no-cache-dir streamlit pandas plotly openpyxl fastavro pyarrow fastapi uvicorn faker requests
+# Install only necessary libraries for CSV/JSON/API stress testing
+RUN pip install --no-cache-dir streamlit pandas plotly fastapi uvicorn faker requests
 
 # copy scripts into the container
 COPY scripts /app/scripts
