@@ -8,14 +8,15 @@ data visualization, and system diagnostics.
 
 import streamlit as st
 import psutil
+import docker
 import os
 import time
 import sqlite3
 import pandas as pd
-import plotly.graph_objects as go
-from datetime import datetime
-import docker
 import sys
+import threading
+import plotly.graph_objects as go
+from data_generator import GenerateData
 
 # --- DATABASE CONFIGURATION ---
 # Metrics are persisted in a local SQLite database for historical analysis
@@ -35,9 +36,31 @@ def init_db():
                   mem_mb REAL,
                   mem_pct REAL)''')
     
-    # Perform resilient migration for the mem_pct column if adding to an older schema
+    c.execute('''CREATE TABLE IF NOT EXISTS extraction_logs
+                 (timestamp DATETIME,
+                  end_time DATETIME,
+                  method TEXT,
+                  records INTEGER,
+                  processes INTEGER,
+                  status TEXT)''')
+    
+    c.execute('''CREATE TABLE IF NOT EXISTS sensor_data
+                 (timestamp DATETIME,
+                  ph_level REAL,
+                  ec_tds REAL,
+                  water_temp REAL,
+                  air_temp REAL,
+                  humidity INTEGER,
+                  water_level INTEGER)''')
+    
+    # Perform resilient migrations for schema updates
     try:
         c.execute("ALTER TABLE metrics ADD COLUMN mem_pct REAL")
+    except sqlite3.OperationalError:
+        pass # Column already exists
+        
+    try:
+        c.execute("ALTER TABLE extraction_logs ADD COLUMN end_time DATETIME")
     except sqlite3.OperationalError:
         pass # Column already exists
     
@@ -78,6 +101,90 @@ def get_history(hours):
     conn.close()
     return df
 
+def get_latest_data(limit=50):
+    """
+    Fetches the most recent sensor records for the preview pane.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        df = pd.read_sql_query(
+            f"SELECT * FROM sensor_data ORDER BY timestamp DESC LIMIT {limit}", 
+            conn
+        )
+    except Exception:
+        df = pd.DataFrame(columns=['timestamp', 'ph_level', 'ec_tds', 'water_temp', 'air_temp', 'humidity', 'water_level'])
+    conn.close()
+    return df
+
+def get_extraction_logs(limit=10):
+    """
+    Retrieves history of extraction attempts with microsecond duration.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        query = f"""
+            SELECT 
+                rowid as sno,
+                timestamp as start_time,
+                end_time,
+                method,
+                records as count,
+                status,
+                (julianday(end_time) - julianday(timestamp)) * 86400 as duration_sec
+            FROM extraction_logs 
+            ORDER BY start_time DESC 
+            LIMIT {limit}
+        """
+        df = pd.read_sql_query(query, conn)
+    except Exception as e:
+        print(f"Log fetch err: {e}")
+        df = pd.DataFrame(columns=['sno', 'start_time', 'end_time', 'method', 'count', 'status', 'duration_sec'])
+    conn.close()
+    return df
+
+def log_extraction_run(method, records, processes, status):
+    """
+    Records an extraction attempt in the history table.
+    Returns the rowid for later updates.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute(
+        "INSERT INTO extraction_logs (timestamp, method, records, processes, status) VALUES (datetime('now', 'localtime'), ?, ?, ?, ?)",
+        (method, records, processes, status)
+    )
+    rowid = c.lastrowid
+    conn.commit()
+    conn.close()
+    return rowid
+
+def update_extraction_status(rowid, status):
+    """
+    Updates the status and end_time of a specific extraction run.
+    """
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("UPDATE extraction_logs SET status = ?, end_time = datetime('now', 'localtime') WHERE rowid = ?", (status, rowid))
+    conn.commit()
+    conn.close()
+
+def run_generator_wrapper(method, records, processes, gen_params, rowid):
+    """
+    Wrapper for background thread to track and log extraction completion.
+    """
+    print(f"🧵 Background thread started for {method} (rowid: {rowid})")
+    try:
+        generator = GenerateData(**gen_params)
+        generator.start_generating()
+        update_extraction_status(rowid, "SUCCESS")
+        print(f"✅ Background thread finished successfully (rowid: {rowid})")
+    except Exception as e:
+        err = str(e)
+        print(f"❌ Background thread FAILED (rowid: {rowid}): {err}")
+        # Avoid huge error strings in the status column
+        short_err = err.split('\n')[0][:50]
+        update_extraction_status(rowid, f"FAILED: {short_err}")
+
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
     page_title="Data Sandbox",
@@ -96,6 +203,7 @@ st.markdown("""
     [data-testid="stStatusWidget"] { visibility: hidden !important; }
     #stDecoration { display: none !important; }
     .stApp > header { background: transparent !important; }
+    [data-testid="stSidebar"] { display: none !important; }
 
     html, body, [class*="css"], .stMarkdown, p, span, div {
         font-family: 'Outfit', sans-serif !important;
@@ -204,40 +312,6 @@ st.markdown("""
     .fill-blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
     .fill-purple { background: linear-gradient(90deg, #8b5cf6, #a78bfa); box-shadow: 0 0 15px rgba(139, 92, 246, 0.4); }
 
-    /* --- SIDEBAR CUSTOMIZATION --- */
-    section[data-testid="stSidebar"] {
-        background-color: #09090b !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .sidebar-header {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        opacity: 0.9;
-    }
-
-    .sidebar-section {
-        background: rgba(255, 255, 255, 0.015);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        border-radius: 10px;
-        padding: 0.8rem 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .sidebar-label {
-        font-size: 0.75rem;
-        color: #94a3b8;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
 
     /* --- SECTION HEADERS --- */
     .section-title-wrap {
@@ -277,39 +351,163 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.03) !important;
         border-radius: 8px !important;
     }
+
+    /* --- DATA TABLE STYLING --- */
+    .data-container {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 10px;
+        margin-top: 15px;
+    }
+
+    .stDataFrame {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    /* Control Box Styling */
+    .control-box {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 15px;
+        padding: 20px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # Initialize system data
 init_db()
 
-# --- HEADER SECTION ---
-st.markdown('<h1 class="hero-title">Data Sandbox</h1>', unsafe_allow_html=True)
-st.markdown('<p class="hero-subtitle">Host-Based Sandbox Monitoring</p>', unsafe_allow_html=True)
+# --- EXTRACTION SIMULATOR SECTION ---
+st.markdown('<div style="height: 1rem;"></div>', unsafe_allow_html=True)
 
-# --- SIDEBAR & DIAGNOSTICS ---
-with st.sidebar:
-    st.markdown('<div class="sidebar-header">🛠️ Diagnostics</div>', unsafe_allow_html=True)
+st.markdown("""
+<div class="section-title-wrap">
+    <div style="width: 5px; height: 35px; background: linear-gradient(to bottom, #f472b6, #a78bfa); border-radius: 3px;"></div>
+    <h2 class="section-title-text">Extraction Simulator</h2>
+    <div class="section-title-line" style="background: linear-gradient(90deg, rgba(244, 114, 182, 0.5), transparent);"></div>
+</div>
+""", unsafe_allow_html=True)
+
+# Main Container
+col_sim_ctrl, col_sim_data = st.columns([1, 1], gap="large")
+
+with col_sim_ctrl:
+    st.markdown('<div class="control-box">', unsafe_allow_html=True)
+    st.markdown('<p style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 500; margin-bottom: 1.5rem;">Parameter Configuration</p>', unsafe_allow_html=True)
     
-    st.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-    st.markdown('<div class="sidebar-label">System Testing</div>', unsafe_allow_html=True)
-    if st.button('🔥 Stress Test (15s)', use_container_width=True):
+    sub_col1, sub_col2 = st.columns(2)
+    with sub_col1:
+        num_records = st.number_input("Total Records", min_value=1, max_value=1000000, value=100, step=100)
+        num_processes = st.slider("Parallel Processes", min_value=1, max_value=8, value=1)
+    
+    with sub_col2:
+        method = st.selectbox("Method", ["stream", "batch"], index=0)
+        if method == "stream":
+            thread_workers = st.slider("Thread Workers", min_value=1, max_value=20, value=5)
+        else:
+            num_batches = st.number_input("Batch Count", min_value=1, max_value=100, value=5)
+    
+    st.markdown('<div style="height: 1rem;"></div>', unsafe_allow_html=True)
+    if st.button("🚀 Start Extraction", use_container_width=True, type="primary"):
         try:
-            # Connect to Docker and initiate high-load process
-            try:
-                client = docker.from_env()
-                client.ping()
-            except Exception:
-                client = docker.DockerClient(base_url="unix:///var/run/docker.sock")
+            gen_params = {"num_records": num_records, "num_process": num_processes, "method": method, "port": 8000}
+            if method == "stream": 
+                gen_params["thread_workers"] = thread_workers
+            else: 
+                gen_params["num_batches"] = num_batches
                 
-            container = client.containers.get("sandbox")
-            container.exec_run("sh -c 'timeout 15s python3 -c \"while True: pass\"'", detach=True)
-            st.toast("🔥 Load simulation active", icon="⚡")
-        except Exception:
-            st.error("Sandbox unreachable")
+            # Create the initial log record with RUNNING status
+            rowid = log_extraction_run(method, num_records, num_processes, "RUNNING")
+            
+            # Run the generator in the background with the specific rowid to update
+            thread = threading.Thread(
+                target=run_generator_wrapper, 
+                args=(method, num_records, num_processes, gen_params, rowid),
+                daemon=True
+            )
+            thread.start()
+            
+            st.toast(f"🚀 {method.upper()} extraction initiated...")
+        except Exception as e:
+            st.error(f"Failed to start background process: {str(e)}")
     st.markdown('</div>', unsafe_allow_html=True)
 
-# --- TELEMETRY LOGIC ---
+# --- LIVE PREVIEW & LOGS FRAGMENT ---
+@st.fragment(run_every=2)
+def display_extraction_feedback():
+    """
+    Refreshes the Data Preview and Logs tables every 2 seconds automatically.
+    """
+    col_sim_data_inner, col_sim_empty = st.columns([1, 0.001]) # Inner layout for fragment
+    
+    with col_sim_data_inner:
+        # Check for active runs to show loader
+        latest_logs = get_extraction_logs(1)
+        is_active = not latest_logs.empty and latest_logs.iloc[0]['status'] == 'RUNNING'
+
+        header_col1, header_col2 = st.columns([2, 1])
+        with header_col1:
+            st.markdown('<p style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 500; margin-bottom: 0.5rem; margin-top: 5px;">Data Ingestion Preview</p>', unsafe_allow_html=True)
+        with header_col2:
+            if is_active:
+                st.markdown('<p style="font-size: 0.75rem; color: #f472b6; font-weight: 600; margin-top: 5px; animation: pulse 1s infinite;">● EXTRACTION ACTIVE</p>', unsafe_allow_html=True)
+
+        # Live Data Preview Pane
+        latest_df = get_latest_data(15)
+        if not latest_df.empty:
+            st.dataframe(
+                latest_df,
+                hide_index=True,
+                column_config={
+                    "timestamp": st.column_config.TextColumn("Captured At"),
+                    "ph_level": st.column_config.NumberColumn("pH", format="%.2f"),
+                    "ec_tds": st.column_config.NumberColumn("EC/TDS", format="%.2f"),
+                    "water_temp": st.column_config.NumberColumn("W-Temp", format="%.1f°C"),
+                    "air_temp": st.column_config.NumberColumn("A-Temp", format="%.1f°C"),
+                    "humidity": st.column_config.NumberColumn("Humid", format="%d%%"),
+                    "water_level": st.column_config.NumberColumn("Level", format="%d%%")
+                },
+                height=250, 
+                use_container_width=True
+            )
+        else:
+            st.info("No records in extraction pipe yet.")
+
+        st.markdown('<div style="height: 1.5rem;"></div>', unsafe_allow_html=True)
+        st.markdown('<p style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 500; margin-bottom: 0.5rem;">System Extraction Logs</p>', unsafe_allow_html=True)
+        
+        # Extraction Log Preview
+        log_df = get_extraction_logs(15)
+        if not log_df.empty:
+            # Format duration in seconds with 6 decimal places (microsecond precision)
+            log_df['duration'] = log_df['duration_sec'].apply(lambda x: f"{x:.6f}s" if pd.notnull(x) else "---")
+            
+            # Filter only requested columns to hide end_time
+            display_df = log_df[['sno', 'start_time', 'duration', 'method', 'count', 'status']]
+            
+            st.dataframe(
+                display_df,
+                hide_index=True,
+                column_config={
+                    "sno": st.column_config.NumberColumn("S.No"),
+                    "start_time": st.column_config.TextColumn("Timestamp"),
+                    "duration": st.column_config.TextColumn("Duration"),
+                    "method": st.column_config.TextColumn("Method"),
+                    "count": st.column_config.NumberColumn("Count"),
+                    "status": st.column_config.TextColumn("Status")
+                },
+                height=250,
+                use_container_width=True
+            )
+        else:
+            st.info("System logs are clear.")
+
+with col_sim_data:
+    display_extraction_feedback()
+
+# --- TELEMETRY SECTION ---
 def get_metrics():
     """
     Fetches real-time container resource telemetry via Docker Stats API.

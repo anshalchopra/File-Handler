@@ -30,6 +30,7 @@ class GenerateData:
                  num_process: int = 1, 
                  method: str = "stream", 
                  port: int = 8000, 
+                 thread_workers: Optional[int] = 1,
                  num_batches: Optional[int] = 1):
         """
         Args:
@@ -44,6 +45,7 @@ class GenerateData:
         self.method = method
         self.port = port
         self.num_batches = num_batches
+        self.thread_workers = thread_workers
         
         # Endpoint definitions
         self.stream_url = f"http://localhost:{port}/receive-data"
@@ -116,7 +118,7 @@ class GenerateData:
         records = [self._create_record() for _ in range(count)]
         
         # Parallelize IO operations to maximize CPU-time utilization during wait states
-        with ThreadPoolExecutor(max_workers=10) as executor:
+        with ThreadPoolExecutor(self.thread_workers) as executor:
             executor.map(self._send_single, records)
 
     def batch_data(self, count: int, num_batches: int = 1):
