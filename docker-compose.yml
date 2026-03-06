@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8501:8501"
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://myuser:mypassword@db:5432/mydb
+
+volumes:
+  postgres_data:
