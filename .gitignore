@@ -11,3 +11,7 @@ test.txt
 
 # OS
 .DS_Store
+
+# Data files
+*.db
+*.json
