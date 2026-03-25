@@ -51992,3 +51992,1512 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-03-25 15:41:30,535 [INFO] ✅ [Wave] 25000/25000 records streaming...
 2026-03-25 15:41:32,396 [INFO] ✅ [Wave] 25000/25000 records streaming...
 2026-03-25 15:41:32,539 [INFO] ✅ [Wave] 25000/25000 records streaming...
+2026-03-25 15:43:47,441 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,445 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,449 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,453 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,453 [INFO] Gen Out: 🛠️  Initializing 'BATCH' engine with 1 worker(s)...
+📦 [Process 117] Building 50000 records into 1 batches...
+🚛 [Process 117] Shipping batch 1 (50000 records)...
+✅ BATCH extraction pipeline completed.
+2026-03-25 15:43:47,489 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,492 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,497 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,501 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,504 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,508 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,511 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,515 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,518 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,522 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,526 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,530 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,534 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,538 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,542 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,546 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,549 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,553 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,556 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,560 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,564 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,567 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,571 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,575 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,578 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,582 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,586 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,590 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,593 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,597 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,600 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,604 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,607 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,611 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,614 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,618 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,621 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,651 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,655 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,658 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,662 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,665 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,669 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,672 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,675 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:43:47,679 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,775 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,791 [INFO] Gen Out: 🛠️  Initializing 'BATCH' engine with 1 worker(s)...
+📦 [Process 123] Building 50000 records into 1 batches...
+🚛 [Process 123] Shipping batch 1 (50000 records)...
+✅ BATCH extraction pipeline completed.
+2026-03-25 15:44:18,800 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,804 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,808 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,812 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,816 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,819 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,823 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,826 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,829 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,833 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,837 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,840 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,844 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,847 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,851 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,855 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,858 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,862 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,891 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,895 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,899 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,902 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,906 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,909 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,913 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,916 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,920 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,924 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,927 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,931 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,935 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,938 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,941 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,945 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,949 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,953 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,982 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,986 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,988 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,991 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,994 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:18,998 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:19,001 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:19,004 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:19,007 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:19,011 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:19,015 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:19,018 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:19,021 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,656 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,682 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,686 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,690 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,694 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,697 [INFO] Gen Out: 🛠️  Initializing 'BATCH' engine with 1 worker(s)...
+📦 [Process 130] Building 50000 records into 5 batches...
+🚛 [Process 130] Shipping batch 1 (10000 records)...
+🚛 [Process 130] Shipping batch 2 (10000 records)...
+🚛 [Process 130] Shipping batch 3 (10000 records)...
+🚛 [Process 130] Shipping batch 4 (10000 records)...
+🚛 [Process 130] Shipping batch 5 (10000 records)...
+✅ BATCH extraction pipeline completed.
+2026-03-25 15:44:30,698 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,703 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,706 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,709 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,713 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,717 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,720 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,724 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,727 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,730 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,734 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,738 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,741 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,744 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,748 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,752 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,755 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,759 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,762 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,767 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,770 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,773 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,777 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,781 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,784 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,800 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,804 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,807 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,811 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,846 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,850 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,853 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,856 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,859 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,862 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,866 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,869 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,872 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,875 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,878 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,882 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,885 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,888 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,891 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:30,894 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:45,664 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:46,078 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:46,235 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:46,689 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,092 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,097 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,107 [INFO] Gen Out: 🛠️  Initializing 'BATCH' engine with 4 worker(s)...
+📦 [Process 141] Building 125000 records into 5 batches...
+🚛 [Process 141] Shipping batch 1 (25000 records)...
+🚛 [Process 141] Shipping batch 2 (25000 records)...
+🚛 [Process 141] Shipping batch 3 (25000 records)...
+🚛 [Process 141] Shipping batch 4 (25000 records)...
+🚛 [Process 141] Shipping batch 5 (25000 records)...
+📦 [Process 143] Building 125000 records into 5 batches...
+🚛 [Process 143] Shipping batch 1 (25000 records)...
+🚛 [Process 143] Shipping batch 2 (25000 records)...
+🚛 [Process 143] Shipping batch 3 (25000 records)...
+🚛 [Process 143] Shipping batch 4 (25000 records)...
+🚛 [Process 143] Shipping batch 5 (25000 records)...
+📦 [Process 142] Building 125000 records into 5 batches...
+🚛 [Process 142] Shipping batch 1 (25000 records)...
+🚛 [Process 142] Shipping batch 2 (25000 records)...
+🚛 [Process 142] Shipping batch 3 (25000 records)...
+🚛 [Process 142] Shipping batch 4 (25000 records)...
+🚛 [Process 142] Shipping batch 5 (25000 records)...
+📦 [Process 140] Building 125000 records into 5 batches...
+🚛 [Process 140] Shipping batch 1 (25000 records)...
+🚛 [Process 140] Shipping batch 2 (25000 records)...
+🚛 [Process 140] Shipping batch 3 (25000 records)...
+🚛 [Process 140] Shipping batch 4 (25000 records)...
+🚛 [Process 140] Shipping batch 5 (25000 records)...
+✅ BATCH extraction pipeline completed.
+2026-03-25 15:44:47,131 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,135 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,138 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,142 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,145 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,149 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,153 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,156 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,160 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,164 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,167 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,171 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,174 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,178 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,181 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,185 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,188 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,192 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,195 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,396 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,404 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,408 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,411 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,415 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,438 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,467 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,472 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,477 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,483 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,486 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,489 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,493 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,496 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,500 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,503 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,506 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,509 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,512 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,515 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,518 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,522 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,526 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,529 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,532 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,535 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,538 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,541 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,544 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,547 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,550 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,553 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,556 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,559 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,562 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,565 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,568 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,571 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,574 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,578 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,581 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,584 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,587 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,590 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,593 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,596 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,599 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,602 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,605 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,608 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,611 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,614 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,617 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,620 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,640 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,643 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,646 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,649 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,653 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,656 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,659 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,662 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,665 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,669 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,673 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,676 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,679 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,682 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,685 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,688 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,691 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,694 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,698 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,701 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,704 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,707 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,710 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,713 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,716 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,719 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,722 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,725 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,728 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,731 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,734 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,737 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,740 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,743 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,746 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,749 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,752 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,755 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,758 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,761 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,765 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,768 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,771 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,774 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,780 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,783 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,786 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,790 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,809 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,812 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,814 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,817 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,820 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,823 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,826 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,829 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,832 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,835 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,838 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,841 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,844 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,846 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,849 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,852 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,855 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,858 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,861 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,864 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,867 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,870 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,873 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,876 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,879 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,882 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,885 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,888 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,891 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,894 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,897 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,900 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,903 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,906 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,909 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,912 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,915 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,917 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,920 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,923 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,926 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,929 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,932 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,935 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,938 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,941 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,944 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,947 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,965 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,968 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,971 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,974 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,977 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,980 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,983 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,986 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,989 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,992 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,995 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:47,998 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,001 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,004 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,007 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,010 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,013 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,015 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,019 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,022 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,025 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,028 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,031 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,033 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,036 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,039 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,042 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,045 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,048 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,051 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,054 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,057 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,060 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,063 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,066 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,070 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,073 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,075 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,078 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,081 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,084 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,087 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,090 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,093 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,096 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,099 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,102 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,105 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,124 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,127 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,129 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,132 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,135 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,138 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,141 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,144 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,147 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,151 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,154 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,157 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,160 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,163 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,166 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,169 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,172 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,175 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,178 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,182 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,185 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,188 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,191 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,194 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,201 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,204 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,207 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,210 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,214 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,217 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,220 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,223 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,227 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,230 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,233 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,236 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,240 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,243 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,246 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,249 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,252 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,255 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,258 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,262 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,265 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,268 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,271 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,274 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,294 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,297 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,300 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,303 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,306 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,309 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,313 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,316 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,319 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,322 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,325 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,328 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,332 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,335 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,338 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,341 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,344 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,347 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,350 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,353 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,356 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,359 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,362 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,365 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,368 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,371 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,374 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,377 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,380 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,383 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,386 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,389 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,392 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,395 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,398 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,401 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,404 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,407 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,410 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,413 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,419 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,425 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,429 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,432 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,435 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,438 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,443 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,449 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,474 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,478 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,481 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,484 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,487 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,490 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,493 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,496 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,499 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,502 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,505 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,508 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,511 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,514 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,517 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,520 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,523 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,526 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,529 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,532 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,535 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,538 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,541 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,544 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,547 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,550 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,554 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,557 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,560 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,564 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,567 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,570 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,573 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,577 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,580 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,583 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,586 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,589 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,592 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,595 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,598 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,601 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,604 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,607 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,610 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,613 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,616 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,619 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,638 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,641 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,644 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,647 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,650 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,653 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,656 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,659 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,662 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,665 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,668 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,671 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,674 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,677 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,680 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,683 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,686 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,689 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,692 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,695 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,698 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,701 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,704 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,707 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,710 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,713 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,716 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,719 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,721 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,724 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,727 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,730 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,733 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,736 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,740 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,743 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,746 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,749 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,752 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,755 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,758 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,760 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,763 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,766 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,769 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,772 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,775 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,778 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,798 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,800 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,803 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,806 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,809 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,812 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,814 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,817 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,820 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,823 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,826 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,829 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,832 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,835 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,838 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,841 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,844 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,847 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,850 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,853 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,856 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,859 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,862 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,865 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,868 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,871 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,874 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,877 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,881 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,884 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,887 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,889 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,892 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,901 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,904 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,907 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,909 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,913 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,916 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,919 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,922 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,924 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,928 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,930 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,933 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,936 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,939 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,943 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,961 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,964 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,967 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,969 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,973 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,976 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,979 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,982 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,984 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,987 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,990 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,993 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:48,996 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,000 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,003 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,006 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,009 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,012 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,015 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,018 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,021 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,024 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,027 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,030 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,033 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,036 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,039 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,042 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,045 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,048 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,051 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,054 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,057 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,060 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,063 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,066 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:44:49,069 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:03,745 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,005 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,311 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,487 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,491 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,503 [INFO] Gen Out: 🛠️  Initializing 'BATCH' engine with 1 worker(s)...
+📦 [Process 164] Building 500000 records into 5 batches...
+🚛 [Process 164] Shipping batch 1 (100000 records)...
+🚛 [Process 164] Shipping batch 2 (100000 records)...
+🚛 [Process 164] Shipping batch 3 (100000 records)...
+🚛 [Process 164] Shipping batch 4 (100000 records)...
+🚛 [Process 164] Shipping batch 5 (100000 records)...
+✅ BATCH extraction pipeline completed.
+2026-03-25 15:45:04,562 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,566 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,569 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,572 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,576 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:45:04,579 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:47:17,744 [INFO] Gen Out: 🛠️  Initializing 'BATCH' engine with 1 worker(s)...
+📦 [Process 174] Building 500000 records into 100 batches...
+🚛 [Process 174] Shipping batch 1 (5000 records)...
+🚛 [Process 174] Shipping batch 2 (5000 records)...
+🚛 [Process 174] Shipping batch 3 (5000 records)...
+🚛 [Process 174] Shipping batch 4 (5000 records)...
+🚛 [Process 174] Shipping batch 5 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 6 (5000 records)...
+🚛 [Process 174] Shipping batch 7 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 8 (5000 records)...
+🚛 [Process 174] Shipping batch 9 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 10 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 11 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 12 (5000 records)...
+🚛 [Process 174] Shipping batch 13 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 14 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 15 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 16 (5000 records)...
+🚛 [Process 174] Shipping batch 17 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 18 (5000 records)...
+🚛 [Process 174] Shipping batch 19 (5000 records)...
+🚛 [Process 174] Shipping batch 20 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 21 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 22 (5000 records)...
+🚛 [Process 174] Shipping batch 23 (5000 records)...
+🚛 [Process 174] Shipping batch 24 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 25 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 26 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 27 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 28 (5000 records)...
+🚛 [Process 174] Shipping batch 29 (5000 records)...
+🚛 [Process 174] Shipping batch 30 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 31 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 32 (5000 records)...
+🚛 [Process 174] Shipping batch 33 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 34 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 35 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 36 (5000 records)...
+🚛 [Process 174] Shipping batch 37 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 38 (5000 records)...
+🚛 [Process 174] Shipping batch 39 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 40 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 41 (5000 records)...
+🚛 [Process 174] Shipping batch 42 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 43 (5000 records)...
+🚛 [Process 174] Shipping batch 44 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 45 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 46 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 47 (5000 records)...
+🚛 [Process 174] Shipping batch 48 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 49 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 50 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 51 (5000 records)...
+🚛 [Process 174] Shipping batch 52 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 53 (5000 records)...
+🚛 [Process 174] Shipping batch 54 (5000 records)...
+🚛 [Process 174] Shipping batch 55 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 56 (5000 records)...
+🚛 [Process 174] Shipping batch 57 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 58 (5000 records)...
+🚛 [Process 174] Shipping batch 59 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 60 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 61 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 62 (5000 records)...
+🚛 [Process 174] Shipping batch 63 (5000 records)...
+🚛 [Process 174] Shipping batch 64 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 65 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 66 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 67 (5000 records)...
+🚛 [Process 174] Shipping batch 68 (5000 records)...
+🚛 [Process 174] Shipping batch 69 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 70 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 71 (5000 records)...
+🚛 [Process 174] Shipping batch 72 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 73 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 74 (5000 records)...
+🚛 [Process 174] Shipping batch 75 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 76 (5000 records)...
+🚛 [Process 174] Shipping batch 77 (5000 records)...
+🚛 [Process 174] Shipping batch 78 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 79 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 80 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 81 (5000 records)...
+🚛 [Process 174] Shipping batch 82 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 83 (5000 records)...
+🚛 [Process 174] Shipping batch 84 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 85 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+🚛 [Process 174] Shipping batch 86 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 87 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 88 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 89 (5000 records)...
+🚛 [Process 174] Shipping batch 90 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+🚛 [Process 174] Shipping batch 91 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 92 (5000 records)...
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 93 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 94 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 95 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 96 (5000 records)...
+🚛 [Process 174] Shipping batch 97 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 98 (5000 records)...
+🚛 [Process 174] Shipping batch 99 (5000 records)...
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 174] Shipping batch 100 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+✅ BATCH extraction pipeline completed.
+2026-03-25 15:48:14,037 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,041 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,045 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,066 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,085 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,103 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,107 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,136 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,150 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,162 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,173 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,187 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,207 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,230 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,244 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,257 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,283 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,303 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,330 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,342 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,357 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,370 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,383 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,705 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,750 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,763 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,786 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,802 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,814 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,827 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,875 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,894 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:14,965 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,015 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,092 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,115 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,130 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,172 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,185 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,200 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,216 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,220 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,224 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,228 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,232 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,237 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,241 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,273 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,279 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,283 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,287 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,291 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,294 [INFO] Gen Out: 🛠️  Initializing 'BATCH' engine with 1 worker(s)...
+📦 [Process 193] Building 500000 records into 100 batches...
+🚛 [Process 193] Shipping batch 1 (5000 records)...
+🚛 [Process 193] Shipping batch 2 (5000 records)...
+🚛 [Process 193] Shipping batch 3 (5000 records)...
+🚛 [Process 193] Shipping batch 4 (5000 records)...
+🚛 [Process 193] Shipping batch 5 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+🚛 [Process 193] Shipping batch 6 (5000 records)...
+🚛 [Process 193] Shipping batch 7 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 8 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 9 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 10 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+🚛 [Process 193] Shipping batch 11 (5000 records)...
+🚛 [Process 193] Shipping batch 12 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 13 (5000 records)...
+🚛 [Process 193] Shipping batch 14 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 15 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 16 (5000 records)...
+🚛 [Process 193] Shipping batch 17 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 18 (5000 records)...
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 19 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 20 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+🚛 [Process 193] Shipping batch 21 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 22 (5000 records)...
+💾 Server Offline: Data cached locally.
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 23 (5000 records)...
+🚛 [Process 193] Shipping batch 24 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 25 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 26 (5000 records)...
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+🚛 [Process 193] Shipping batch 27 (5000 records)...
+💾 Server Offline: Data cached locally.
+⚠️ Batch Error: 
+🚛 [Process 193] Shipping batch 28 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 29 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 30 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 31 (5000 records)...
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 32 (5000 records)...
+⚠️ Batch Error: 
+⚠️ Batch Error: 
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 33 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 34 (5000 records)...
+💾 Server Offline: Data cached locally.
+🚛 [Process 193] Shipping batch 35 (5000 records)...
+🚛 [Process 193] Shipping batch 36 (5000 records)...
+🚛 [Process 193] Shipping batch 37 (5000 records)...
+🚛 [Process 193] Shipping batch 38 (5000 records)...
+🚛 [Process 193] Shipping batch 39 (5000 records)...
+🚛 [Process 193] Shipping batch 40 (5000 records)...
+🚛 [Process 193] Shipping batch 41 (5000 records)...
+🚛 [Process 193] Shipping batch 42 (5000 records)...
+🚛 [Process 193] Shipping batch 43 (5000 records)...
+🚛 [Process 193] Shipping batch 44 (5000 records)...
+🚛 [Process 193] Shipping batch 45 (5000 records)...
+🚛 [Process 193] Shipping batch 46 (5000 records)...
+🚛 [Process 193] Shipping batch 47 (5000 records)...
+🚛 [Process 193] Shipping batch 48 (5000 records)...
+🚛 [Process 193] Shipping batch 49 (5000 records)...
+🚛 [Process 193] Shipping batch 50 (5000 records)...
+🚛 [Process 193] Shipping batch 51 (5000 records)...
+🚛 [Process 193] Shipping batch 52 (5000 records)...
+🚛 [Process 193] Shipping batch 53 (5000 records)...
+🚛 [Process 193] Shipping batch 54 (5000 records)...
+🚛 [Process 193] Shipping batch 55 (5000 records)...
+🚛 [Process 193] Shipping batch 56 (5000 records)...
+🚛 [Process 193] Shipping batch 57 (5000 records)...
+🚛 [Process 193] Shipping batch 58 (5000 records)...
+🚛 [Process 193] Shipping batch 59 (5000 records)...
+🚛 [Process 193] Shipping batch 60 (5000 records)...
+🚛 [Process 193] Shipping batch 61 (5000 records)...
+🚛 [Process 193] Shipping batch 62 (5000 records)...
+🚛 [Process 193] Shipping batch 63 (5000 records)...
+🚛 [Process 193] Shipping batch 64 (5000 records)...
+🚛 [Process 193] Shipping batch 65 (5000 records)...
+🚛 [Process 193] Shipping batch 66 (5000 records)...
+🚛 [Process 193] Shipping batch 67 (5000 records)...
+🚛 [Process 193] Shipping batch 68 (5000 records)...
+🚛 [Process 193] Shipping batch 69 (5000 records)...
+🚛 [Process 193] Shipping batch 70 (5000 records)...
+🚛 [Process 193] Shipping batch 71 (5000 records)...
+🚛 [Process 193] Shipping batch 72 (5000 records)...
+🚛 [Process 193] Shipping batch 73 (5000 records)...
+🚛 [Process 193] Shipping batch 74 (5000 records)...
+🚛 [Process 193] Shipping batch 75 (5000 records)...
+🚛 [Process 193] Shipping batch 76 (5000 records)...
+🚛 [Process 193] Shipping batch 77 (5000 records)...
+🚛 [Process 193] Shipping batch 78 (5000 records)...
+🚛 [Process 193] Shipping batch 79 (5000 records)...
+🚛 [Process 193] Shipping batch 80 (5000 records)...
+🚛 [Process 193] Shipping batch 81 (5000 records)...
+🚛 [Process 193] Shipping batch 82 (5000 records)...
+🚛 [Process 193] Shipping batch 83 (5000 records)...
+🚛 [Process 193] Shipping batch 84 (5000 records)...
+🚛 [Process 193] Shipping batch 85 (5000 records)...
+🚛 [Process 193] Shipping batch 86 (5000 records)...
+🚛 [Process 193] Shipping batch 87 (5000 records)...
+🚛 [Process 193] Shipping batch 88 (5000 records)...
+🚛 [Process 193] Shipping batch 89 (5000 records)...
+🚛 [Process 193] Shipping batch 90 (5000 records)...
+🚛 [Process 193] Shipping batch 91 (5000 records)...
+🚛 [Process 193] Shipping batch 92 (5000 records)...
+🚛 [Process 193] Shipping batch 93 (5000 records)...
+🚛 [Process 193] Shipping batch 94 (5000 records)...
+🚛 [Process 193] Shipping batch 95 (5000 records)...
+🚛 [Process 193] Shipping batch 96 (5000 records)...
+🚛 [Process 193] Shipping batch 97 (5000 records)...
+🚛 [Process 193] Shipping batch 98 (5000 records)...
+🚛 [Process 193] Shipping batch 99 (5000 records)...
+🚛 [Process 193] Shipping batch 100 (5000 records)...
+✅ BATCH extraction pipeline completed.
+2026-03-25 15:48:15,295 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,300 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,303 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,307 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,310 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,314 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,318 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,322 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,325 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,329 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,334 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,337 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,341 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,345 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,348 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,352 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,356 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,359 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,363 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,367 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,371 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,374 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,378 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,382 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,385 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,389 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,393 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,396 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,401 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,404 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,408 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,411 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,415 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,419 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,423 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,426 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,430 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,434 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,437 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,441 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,445 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,449 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,453 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,487 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,491 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,498 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,502 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,506 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,510 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,514 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,518 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,522 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,525 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,529 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,532 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,535 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,539 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,542 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,546 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,549 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,553 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,556 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,559 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,563 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,567 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,570 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,573 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,577 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,581 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,585 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,589 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,592 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,596 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,600 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,603 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,607 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,610 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,614 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,618 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,621 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,625 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,628 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,632 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,636 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,639 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,642 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,645 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,649 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,653 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,656 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,660 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,714 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,725 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,738 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,745 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,758 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,772 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,781 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,786 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,790 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,794 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,798 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,803 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,807 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,811 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,817 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,824 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,830 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,834 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,838 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,841 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,845 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,849 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,853 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,856 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,860 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,864 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,868 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,871 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,875 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,878 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,882 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,886 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,889 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,893 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,899 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:48:15,906 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:53:30,333 [ERROR] Metrics Log Error: no such table: metrics
+2026-03-25 15:54:18,929 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,934 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,937 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,941 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,944 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,948 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,952 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,955 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,959 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:18,963 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,769 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,772 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,776 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,780 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,784 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,812 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,816 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,855 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,859 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:30,863 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:40,706 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:40,710 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:40,751 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:40,796 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:40,843 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:40,889 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:40,935 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:40,980 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:41,022 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:41,065 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:48,758 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:48,800 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:48,858 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:48,901 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:48,985 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:49,029 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:49,097 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:49,157 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:49,200 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:49,266 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:55,447 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:55,541 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:55,630 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:55,735 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:55,800 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:55,886 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:55,976 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:56,064 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:56,150 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:54:56,234 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,350 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,363 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,366 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,370 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,374 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,377 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,390 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,394 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,398 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:28,403 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:34,337 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:34,426 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:34,510 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:34,594 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:34,680 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:34,766 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:34,852 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:34,936 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:35,021 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:35,105 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:49,933 [INFO] 🌊 [Process 357] Starting Dynamic Wave stream for 2500 records...
+2026-03-25 15:55:49,934 [INFO] 🌊 [Process 358] Starting Dynamic Wave stream for 2500 records...
+2026-03-25 15:55:49,935 [INFO] 🌊 [Process 359] Starting Dynamic Wave stream for 2500 records...
+2026-03-25 15:55:49,935 [INFO] 🌊 [Process 360] Starting Dynamic Wave stream for 2500 records...
+2026-03-25 15:55:49,977 [INFO] 🚀 [Wave] Preparing 269 records...
+2026-03-25 15:55:49,979 [INFO] 🚀 [Wave] Preparing 295 records...
+2026-03-25 15:55:49,980 [INFO] 🚀 [Wave] Preparing 321 records...
+2026-03-25 15:55:49,980 [INFO] 🚀 [Wave] Preparing 361 records...
+2026-03-25 15:55:52,039 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:52,242 [INFO] ✅ [Wave] 269/2500 records streaming...
+2026-03-25 15:55:52,349 [INFO] 🚀 [Wave] Preparing 286 records...
+2026-03-25 15:55:52,442 [INFO] ✅ [Wave] 295/2500 records streaming...
+2026-03-25 15:55:52,544 [INFO] 🚀 [Wave] Preparing 315 records...
+2026-03-25 15:55:52,682 [INFO] ✅ [Wave] 321/2500 records streaming...
+2026-03-25 15:55:52,783 [INFO] 🚀 [Wave] Preparing 348 records...
+2026-03-25 15:55:53,014 [INFO] ✅ [Wave] 361/2500 records streaming...
+2026-03-25 15:55:53,118 [INFO] 🚀 [Wave] Preparing 333 records...
+2026-03-25 15:55:54,222 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:54,722 [INFO] ✅ [Wave] 555/2500 records streaming...
+2026-03-25 15:55:54,824 [INFO] 🚀 [Wave] Preparing 354 records...
+2026-03-25 15:55:55,140 [INFO] ✅ [Wave] 610/2500 records streaming...
+2026-03-25 15:55:55,246 [INFO] 🚀 [Wave] Preparing 262 records...
+2026-03-25 15:55:55,684 [INFO] ✅ [Wave] 669/2500 records streaming...
+2026-03-25 15:55:55,790 [INFO] 🚀 [Wave] Preparing 259 records...
+2026-03-25 15:55:55,887 [INFO] ✅ [Wave] 694/2500 records streaming...
+2026-03-25 15:55:55,990 [INFO] 🚀 [Wave] Preparing 320 records...
+2026-03-25 15:55:56,386 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:57,422 [INFO] ✅ [Wave] 872/2500 records streaming...
+2026-03-25 15:55:57,524 [INFO] 🚀 [Wave] Preparing 281 records...
+2026-03-25 15:55:57,756 [INFO] ✅ [Wave] 909/2500 records streaming...
+2026-03-25 15:55:57,857 [INFO] 🚀 [Wave] Preparing 294 records...
+2026-03-25 15:55:57,936 [INFO] ✅ [Wave] 928/2500 records streaming...
+2026-03-25 15:55:58,037 [INFO] 🚀 [Wave] Preparing 337 records...
+2026-03-25 15:55:58,545 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:55:58,630 [INFO] ✅ [Wave] 1014/2500 records streaming...
+2026-03-25 15:55:58,737 [INFO] 🚀 [Wave] Preparing 302 records...
+2026-03-25 15:55:59,847 [INFO] ✅ [Wave] 1153/2500 records streaming...
+2026-03-25 15:55:59,949 [INFO] 🚀 [Wave] Preparing 350 records...
+2026-03-25 15:56:00,272 [INFO] ✅ [Wave] 1203/2500 records streaming...
+2026-03-25 15:56:00,373 [INFO] 🚀 [Wave] Preparing 350 records...
+2026-03-25 15:56:00,686 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:56:00,807 [INFO] ✅ [Wave] 1265/2500 records streaming...
+2026-03-25 15:56:00,908 [INFO] 🚀 [Wave] Preparing 307 records...
+2026-03-25 15:56:01,229 [INFO] ✅ [Wave] 1316/2500 records streaming...
+2026-03-25 15:56:01,330 [INFO] 🚀 [Wave] Preparing 359 records...
+2026-03-25 15:56:02,817 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:56:02,862 [INFO] ✅ [Wave] 1503/2500 records streaming...
+2026-03-25 15:56:02,963 [INFO] 🚀 [Wave] Preparing 367 records...
+2026-03-25 15:56:03,273 [INFO] ✅ [Wave] 1553/2500 records streaming...
+2026-03-25 15:56:03,378 [INFO] 🚀 [Wave] Preparing 343 records...
+2026-03-25 15:56:03,469 [INFO] ✅ [Wave] 1572/2500 records streaming...
+2026-03-25 15:56:03,571 [INFO] 🚀 [Wave] Preparing 260 records...
+2026-03-25 15:56:04,278 [INFO] ✅ [Wave] 1675/2500 records streaming...
+2026-03-25 15:56:04,379 [INFO] 🚀 [Wave] Preparing 374 records...
+2026-03-25 15:56:04,934 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:56:05,655 [INFO] ✅ [Wave] 1832/2500 records streaming...
+2026-03-25 15:56:05,757 [INFO] 🚀 [Wave] Preparing 346 records...
+2026-03-25 15:56:05,944 [INFO] ✅ [Wave] 1870/2500 records streaming...
+2026-03-25 15:56:06,045 [INFO] 🚀 [Wave] Preparing 327 records...
+2026-03-25 15:56:06,191 [INFO] ✅ [Wave] 1896/2500 records streaming...
+2026-03-25 15:56:06,295 [INFO] 🚀 [Wave] Preparing 363 records...
+2026-03-25 15:56:07,088 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:56:07,472 [INFO] ✅ [Wave] 2049/2500 records streaming...
+2026-03-25 15:56:07,574 [INFO] 🚀 [Wave] Preparing 255 records...
+2026-03-25 15:56:08,625 [INFO] ✅ [Wave] 2178/2500 records streaming...
+2026-03-25 15:56:08,731 [INFO] 🚀 [Wave] Preparing 296 records...
+2026-03-25 15:56:08,748 [INFO] ✅ [Wave] 2197/2500 records streaming...
+2026-03-25 15:56:08,850 [INFO] 🚀 [Wave] Preparing 290 records...
+2026-03-25 15:56:09,224 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:56:09,291 [INFO] ✅ [Wave] 2259/2500 records streaming...
+2026-03-25 15:56:09,397 [INFO] 🚀 [Wave] Preparing 241 records...
+2026-03-25 15:56:09,662 [INFO] ✅ [Wave] 2304/2500 records streaming...
+2026-03-25 15:56:09,763 [INFO] 🚀 [Wave] Preparing 196 records...
+2026-03-25 15:56:11,185 [INFO] ✅ [Wave] 2474/2500 records streaming...
+2026-03-25 15:56:11,244 [INFO] ✅ [Wave] 2487/2500 records streaming...
+2026-03-25 15:56:11,291 [INFO] 🚀 [Wave] Preparing 26 records...
+2026-03-25 15:56:11,350 [INFO] 🚀 [Wave] Preparing 13 records...
+2026-03-25 15:56:11,391 [INFO] ✅ [Wave] 2500/2500 records streaming...
+2026-03-25 15:56:11,393 [INFO] ✅ [Wave] 2500/2500 records streaming...
+2026-03-25 15:56:11,438 [INFO] ✅ [Wave] 2500/2500 records streaming...
+2026-03-25 15:56:11,467 [INFO] 💾 Flush Complete: 1000 records committed to monitoring.db
+2026-03-25 15:56:11,503 [INFO] ✅ [Wave] 2500/2500 records streaming...

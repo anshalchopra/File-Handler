@@ -213,20 +213,16 @@ def get_system_stats():
 
 def run_generator(params, rid):
     try:
-        cmd = [
-            sys.executable, "scripts/data_generator.py",
-            "--records", str(params.get("num_records", 500)),
-            "--processes", str(params.get("num_process", 1)),
-            "--method", params.get("method", "stream"),
-            "--batches", str(params.get("num_batches", 1)),
-            "--port", "8000"
-        ]
-        res = subprocess.run(cmd, capture_output=True, text=True)
-        if res.stdout: logger.info(f"Gen Out: {res.stdout.strip()}")
-        if res.stderr: logger.error(f"Gen Err: {res.stderr.strip()}")
-        finish_run(rid, "SUCCESS" if res.returncode == 0 else "FAILED")
+        cmd = [sys.executable, os.path.join(os.path.dirname(__file__), "data_generator.py"),
+               "--records", str(params["num_records"]),
+               "--processes", str(params["num_process"]),
+               "--method", params["method"],
+               "--port", str(params.get("port", 8000)),
+               "--batches", str(params.get("num_batches", 1))]
+        subprocess.run(cmd, check=True)
+        finish_run(rid, "SUCCESS")
     except Exception as e:
-        logger.exception("Worker Crash")
+        logger.error(f"Execution Error: {e}")
         finish_run(rid, "FAILED")
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
@@ -271,7 +267,7 @@ def main():
                 batches = st.number_input("Batches", 1, 100, 1)
         with c4:
             st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True) # Spacer
-            if st.button("🚀  Execute Pipeline", use_container_width=True, type="primary"):
+            if st.button("🚀  Execute Wave", use_container_width=True, type="primary"):
                 rid = log_run(method, n_recs, n_proc, batches)
                 params = {"num_records": n_recs, "num_process": n_proc, "method": method, "num_batches": batches}
                 t = threading.Thread(target=run_generator, args=(params, rid), daemon=True)
@@ -293,8 +289,16 @@ def main():
     st.divider()
     audit_p = st.empty()
 
-    # ── High-Speed Loop ──
-    while True:
+    # --- 2. THE PULSE (LOOP GUARD) ---
+    # We use a run_id to ensure only ONE loop exists per window.
+    # If the user clicks a button, Streamlit reruns the script, and this new CID 
+    # will cause the OLD loop below to 'break' immediately.
+    import uuid
+    current_run_id = str(uuid.uuid4())
+    st.session_state.run_id = current_run_id
+
+    # ── High-Speed Telemetry Loop ──
+    while st.session_state.run_id == current_run_id:
         m = get_system_stats()
         log_metrics(m['cpu_pct'], m['mem_used'], m['mem_pct'])
         active = get_active_runs()
@@ -310,7 +314,7 @@ def main():
         </div>
         """, unsafe_allow_html=True)
 
-        # 2. Update HUD (Vertical Stack next to chart)
+        # 2. Update HUD
         hud_p.markdown(f"""
         <div style="display:flex;flex-direction:column;gap:12px;">
             <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.15);border-radius:12px;padding:18px;text-align:center;">
@@ -326,27 +330,19 @@ def main():
         </div>
         """, unsafe_allow_html=True)
 
-        # 2. Update Charts & Tables
+        # 3. Update Charts & Tables
         df = get_metrics_latest()
         fig = go.Figure()
         if not df.empty:
-            # CPU% on Primary Y-Axis (Left)
-            fig.add_trace(go.Scattergl(
-                x=df['timestamp'], y=df['cpu_pct'], 
-                name='CPU Load', 
-                line=dict(color='#A78BFA', width=3),
-                yaxis="y1"
-            ))
-            # RAM% on Secondary Y-Axis (Right)
-            fig.add_trace(go.Scattergl(
-                x=df['timestamp'], y=df['mem_pct'], 
-                name='RAM Usage', 
-                line=dict(color='#00E5FF', width=3),
-                fill='tozeroy', 
-                fillcolor='rgba(0,229,255,0.05)',
-                yaxis="y2"
-            ))
+            fig.add_trace(go.Scattergl(x=df['timestamp'], y=df['cpu_pct'], name='CPU Load', line=dict(color='#A78BFA', width=3), yaxis="y1"))
+            fig.add_trace(go.Scattergl(x=df['timestamp'], y=df['mem_pct'], name='RAM Usage', line=dict(color='#00E5FF', width=3), fill='tozeroy', fillcolor='rgba(0,229,255,0.05)', yaxis="y2"))
             
+            # Add 10s breathing room on the right side of the timeline
+            x_min = df['timestamp'].min()
+            x_max = df['timestamp'].max() + timedelta(seconds=15) # Increased to 15s to be safe
+        else:
+            x_min, x_max = datetime.now() - timedelta(minutes=5), datetime.now() + timedelta(seconds=15)
+
         fig.update_layout(
             template="plotly_dark",
             paper_bgcolor='rgba(0,0,0,0)',
@@ -356,30 +352,13 @@ def main():
             uirevision='const',
             showlegend=True,
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-            # Fixed 100% Scale for Both Axes
-            yaxis=dict(
-                title="CPU %",
-                range=[0, 100],
-                gridcolor='rgba(255,255,255,0.05)',
-                zeroline=False
-            ),
-            yaxis2=dict(
-                title="RAM %",
-                range=[0, 100],
-                overlaying='y',
-                side='right',
-                gridcolor='rgba(255,255,255,0.05)',
-                zeroline=False
-            ),
-            xaxis=dict(
-                gridcolor='rgba(255,255,255,0.05)',
-                zeroline=False
-            )
+            yaxis=dict(title="CPU %", range=[0, 100], gridcolor='rgba(255,255,255,0.05)', zeroline=False),
+            yaxis2=dict(title="RAM %", range=[0, 100], overlaying='y', side='right', gridcolor='rgba(255,255,255,0.05)', zeroline=False),
+            xaxis=dict(range=[x_min, x_max], gridcolor='rgba(255,255,255,0.05)', zeroline=False)
         )
 
         with chart_p.container():
             st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
-
 
         with data_p.container():
             st.markdown('<div class="sec-label">Latest Records</div>', unsafe_allow_html=True)
@@ -396,7 +375,8 @@ def main():
                     st.code("".join(f.readlines()[-10:]), language="log")
             except: pass
 
-        time.sleep(1) # Smooth ~3 FPS for readable live metrics
+        # Smooth heartbeat refresh
+        time.sleep(1)
 
 if __name__ == "__main__":
     main()
