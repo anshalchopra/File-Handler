@@ -1,65 +1,71 @@
 """
-Multi-Process Data Generation Engine
-------------------------------------
-This module simulates sensor data extraction. It generates synthetic 
-resource/environment data and transmits it to the monitoring endpoints 
-using parallel processing and multiple transmission strategies.
+🚀 High-Performance Async Data Generator
+----------------------------------------
+This engine simulates a swarm of sensors by combining:
+1. Multiprocessing: To utilize multiple CPU cores for heavy record generation.
+2. AsyncIO/httpx: To 'blast' thousands of records to the API at the same time.
+
+Structure:
+- start_generating: Launches the OS-level worker processes.
+- stream_data / batch_data: Orchestrates the AsyncIO blast inside each process.
 """
 
 import multiprocessing
 import os
 import random
-import requests
+import httpx
 import json
+import asyncio
+import logging
 from datetime import datetime
 from typing import Optional
-from concurrent.futures import ThreadPoolExecutor
 
+# --- 1. LOGGING CONFIG ---
+log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs", "pipeline.log"))
+os.makedirs(os.path.dirname(log_path), exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    handlers=[
+        logging.FileHandler(log_path),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("Generator")
+
+# Mute noisy network library logs
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("httpcore").setLevel(logging.WARNING)
+
+# --- 2. DATA GENERATION CLASS ---
 class GenerateData:
     """
-    Handles the generation and transmission of synthetic sensor data.
-    
-    Features:
-    - Multi-process distribution for high-frequency extraction.
-    - Threaded IO for efficient 'stream' transmissions.
-    - Grouped 'batch' transmission for bulk data transfers.
-    - Disk-based fallback logging for data persistence during outages.
+    Handles the generation and high-speed transmission of sensor data.
     """
     def __init__(self, 
                  num_records: int = 500, 
                  num_process: int = 1, 
                  method: str = "stream", 
                  port: int = 8000, 
-                 thread_workers: Optional[int] = 1,
                  num_batches: Optional[int] = 1):
-        """
-        Args:
-            num_records (int): Total records to generate across all processes.
-            num_process (int): Number of parallel processes to utilize.
-            method (str): Transmission strategy - 'stream' (sequential) or 'batch' (bulk).
-            port (int): Target API port.
-            num_batches (int): Number of bulk groups (applicable only in 'batch' mode).
-        """
+        
         self.num_record = num_records
         self.num_process = num_process
         self.method = method
         self.port = port
         self.num_batches = num_batches
-        self.thread_workers = thread_workers
         
-        # Endpoint definitions
+        # API Target Endpoints
         self.stream_url = f"http://localhost:{port}/receive-data"
         self.batch_url = f"http://localhost:{port}/receive-bulk-data"
         
-        # Resolve data directory for fallback logging
+        # Fallback directory if the API is down
         self.data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
 
+    # --- 2. RECORD CREATION (CPU BOUND) ---
     def _create_record(self) -> dict:
         """
-        Internal: Generates a single synthetic sensor observation.
-        
-        Returns:
-            dict: Simulated sensor metrics (pH, Temperature, Humidity, etc.)
+        CPU-BOUND MATH: Generates one synthetic sensor record.
         """
         return { 
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -71,10 +77,10 @@ class GenerateData:
             "water_level": random.randint(70, 100)
         }
 
-    def _save_to_disk(self, data):
+    # --- 3. DISK LOGGING (WITH to_thread) ---
+    async def _save_to_disk(self, data, error_reason="Unknown Error"):
         """
-        Internal: Persists data to local storage when the primary endpoint is unreachable.
-        Used as a high-reliability fallback mechanism.
+        DISK-FALLBACK: Saves records to a file if the server is offline.
         """
         os.makedirs(self.data_dir, exist_ok=True)
         filepath = os.path.join(self.data_dir, "failed_transmissions.json")
@@ -82,107 +88,170 @@ class GenerateData:
         log_entry = {
             "captured_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "method": self.method,
+            "error_reason": str(error_reason),
             "data": data
         }
 
         try:
-            # Atomic line-append to JSONL file for multi-process safety and performance
-            with open(filepath, 'a') as f:
-                f.write(json.dumps(log_entry) + "\n")
-            print(f"💾 Endpoint unreachable. Data cached to: failed_transmissions.json")
+            def write_file():
+                with open(filepath, 'a') as f:
+                    f.write(json.dumps(log_entry) + "\n")
+            
+            await asyncio.to_thread(write_file)
+            print(f"💾 Server Offline: Data cached locally.")
         except Exception as e:
-            print(f"❌ Storage Failure: Could not persist fallback data: {e}")
+            print(f"❌ Disk Error: {e}")
 
-    def _send_single(self, record: dict):
+    # --- 4. ASYNC TRANSMISSION HELPER ---
+    async def _send_record(self, client: httpx.AsyncClient, record: dict):
         """
-        Internal: Performs a synchronous HTTP POST for a single record.
-        Designed for execution within a thread pool.
+        NON-BLOCKING: Sends one record and 'waits' for the network asynchronously.
         """
         try:
-            response = requests.post(self.stream_url, json=record, timeout=5)
+            response = await client.post(self.stream_url, json=record)
             response.raise_for_status()
         except Exception as e:
-            print(f"⚠️ Stream Error: {e}")
-            self._save_to_disk(record)
+            print(f"⚠️ Network Warning: {e}")
+            await self._save_to_disk(record, error_reason=str(e))
 
-    def stream_data(self, count: int):
+    # --- 5. EXECUTION STRATEGIES (THE FIREHOSE) ---
+
+    async def stream_data(self, count: int):
         """
-        Transactional: Sends records sequentially via high-concurrency thread pool.
-        
-        Args:
-            count (int): Number of records to stream for the current process.
+        DYNAMIC WAVE ENGINE:
+        1. Breaks 'count' into random bursts (25-50% of total).
+        2. Blasts each wave asynchronously, but throttled by a Semaphore.
+        3. Rests for 200ms to mimic 'pulsing' real-time flow.
         """
         pid = os.getpid()
-        print(f"🚀 [Process {pid}] Streaming {count} sequential records...")
+        sent = 0
         
-        records = [self._create_record() for _ in range(count)]
+        logger.info(f"🌊 [Process {pid}] Starting Dynamic Wave stream for {count} records...")
         
-        # Parallelize IO operations to maximize CPU-time utilization during wait states
-        with ThreadPoolExecutor(self.thread_workers) as executor:
-            executor.map(self._send_single, records)
+        # MEMORY FIX: limit concurrent requests to prevent RAM spikes (Semaphore)
+        sem = asyncio.Semaphore(5) # Max 5 active HTTP requests
+        limits = httpx.Limits(max_connections=50, max_keepalive_connections=10)
+        transport = httpx.AsyncHTTPTransport(limits=limits)
+        
+        async def sem_send(client, record):
+            async with sem:
+                return await self._send_record(client, record)
 
-    def batch_data(self, count: int, num_batches: int = 1):
-        """
-        Transactional: Groups records and performs bulk HTTP POST transmissions.
+        async with httpx.AsyncClient(transport=transport) as client:
+            while sent < count:
+                # Smaller waves (10-15% of total) for maximum stability in 512MB RAM
+                wave_size = max(1, int(count * (random.uniform(0.10, 0.15))))
+                wave_size = min(wave_size, count - sent)
+                
+                logger.info(f"🚀 [Wave] Preparing {wave_size} records...")
+                
+                tasks = []
+                for _ in range(wave_size):
+                    tasks.append(sem_send(client, self._create_record()))
+                
+                await asyncio.gather(*tasks)
+                sent += wave_size
+                
+                logger.info(f"✅ [Wave] {sent}/{count} records streaming...")
+                await asyncio.sleep(0.1)
         
-        Args:
-            count (int): Total records to transmit.
-            num_batches (int): Partition count for batch grouping.
+        print(f"✨ [Process {pid}] Dynamic Wave stream completed.")
+
+    async def batch_data(self, count: int, num_batches: int = 1):
+        """
+        BULK UPLOAD: Groups records into large chunks and uploads them collectively.
         """
         pid = os.getpid()
-        print(f"🚀 [Process {pid}] Preparing {count} records in {num_batches} batch(es)...")
+        print(f"📦 [Process {pid}] Building {count} records into {num_batches} batches...")
         
+        # INTEGRATION 2 (Part A): Fix math bug for batch remainders
         batch_size = count // num_batches
+        remainder = count % num_batches
         
-        for i in range(num_batches):
-            batch_records = [self._create_record() for _ in range(batch_size)]
-            try:
-                print(f"📦 [Process {pid}] Transmitting batch {i+1}/{num_batches}...")
-                response = requests.post(self.batch_url, json=batch_records, timeout=10)
-                response.raise_for_status()
-            except Exception as e:
-                print(f"⚠️ Batch Error: {e}")
-                self._save_to_disk(batch_records)
+        # INTEGRATION 1: Expand HTTP connection limits
+        limits = httpx.Limits(max_connections=2000, max_keepalive_connections=500)
+        transport = httpx.AsyncHTTPTransport(limits=limits)
+        
+        # MEMORY FIX: Throttled batch shipping
+        sem = asyncio.Semaphore(5) # Max 5 concurrent batch uploads
+        limits = httpx.Limits(max_connections=50, max_keepalive_connections=10)
+        transport = httpx.AsyncHTTPTransport(limits=limits)
+
+        async with httpx.AsyncClient(transport=transport) as client:
+            tasks = []
+            for i in range(num_batches):
+                current_batch_size = batch_size + (remainder if i == num_batches - 1 else 0)
+                batch_records = [self._create_record() for _ in range(current_batch_size)]
+                
+                async def send_batch_sem(data, idx):
+                    async with sem:
+                        try:
+                            print(f"🚛 [Process {pid}] Shipping batch {idx+1} ({len(data)} records)...")
+                            resp = await client.post(self.batch_url, json=data)
+                            resp.raise_for_status()
+                        except Exception as e:
+                            print(f"⚠️ Batch Error: {e}")
+                            await self._save_to_disk(data, error_reason=str(e))
+                
+                tasks.append(send_batch_sem(batch_records, i))
+            
+            await asyncio.gather(*tasks)
+
+    # --- 6. MULTIPROCESSING ORCHESTRATOR ---
+
+    def _worker_entrypoint(self, count: int, mode: str, batches: int):
+        """
+        BRIDGE: This is where each separate CPU process enters its own Event Loop.
+        """
+        if mode == "batch":
+            asyncio.run(self.batch_data(count, batches))
+        else:
+            asyncio.run(self.stream_data(count))
 
     def start_generating(self):
         """
-        Orchestration: Divides the total load across parallel OS processes.
-        This is the main entry point for the generation task.
+        COMMAND CENTER: Divides total work among your computer's CPU cores.
         """
+        # INTEGRATION 2 (Part B): Fix math bug for process remainders
         records_per_process = self.num_record // self.num_process
+        remainder = self.num_record % self.num_process
+        
         processes = []
 
         print(f"🛠️  Initializing '{self.method.upper()}' engine with {self.num_process} worker(s)...")
 
-        for _ in range(self.num_process):
-            if self.method == "batch":
-                p = multiprocessing.Process(
-                    target=self.batch_data, 
-                    args=(records_per_process, self.num_batches)
-                )
-            else:
-                p = multiprocessing.Process(
-                    target=self.stream_data, 
-                    args=(records_per_process,)
-                )
+        for i in range(self.num_process):
+            # Ensure the last process picks up any remaining records
+            worker_count = records_per_process + (remainder if i == self.num_process - 1 else 0)
             
+            p = multiprocessing.Process(
+                target=self._worker_entrypoint, 
+                args=(worker_count, self.method, self.num_batches)
+            )
             p.start()
             processes.append(p)
 
-        # Wait for all workers to finish execution
         for p in processes:
             p.join()
             
         print(f"✅ {self.method.upper()} extraction pipeline completed.")
 
+# --- 7. MAIN START ---
 if __name__ == "__main__":
-    # --- DEFAULT CONFIGURATION FOR LOCAL TESTING ---
-    # Total: 10 records, Processes: 2, Mode: Batch, Batches: 5
+    import argparse
+    parser = argparse.ArgumentParser(description="Data Generator Firehose")
+    parser.add_argument("--records", type=int, default=500)
+    parser.add_argument("--processes", type=int, default=1)
+    parser.add_argument("--method", type=str, default="stream")
+    parser.add_argument("--port", type=int, default=8000)
+    parser.add_argument("--batches", type=int, default=1)
+    args = parser.parse_args()
+
     generator = GenerateData(
-        num_records=10, 
-        num_process=2, 
-        method="batch", 
-        num_batches=5
+        num_records=args.records,
+        num_process=args.processes,
+        method=args.method,
+        port=args.port,
+        num_batches=args.batches
     )
-    
     generator.start_generating()

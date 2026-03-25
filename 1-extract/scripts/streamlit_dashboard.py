@@ -1,287 +1,402 @@
 """
-Data Sandbox Dashboard
-----------------------
-A high-performance Streamlit dashboard for real-time monitoring of 
-sandbox resource utilization. Features live telemetry, historical 
-data visualization, and system diagnostics.
+Midnight Pro: High-Speed Execution Dashboard
+Zero-Flicker Architecture with Integrated Pipeline Telemetry & Audit Logs.
 """
 
 import streamlit as st
 import psutil
-import docker
 import os
-import time
 import sqlite3
-import pandas as pd
-import sys
 import threading
+import time
+import subprocess
+import sys
+import pandas as pd
 import plotly.graph_objects as go
-from data_generator import GenerateData
+import logging
+from datetime import datetime, timedelta
 
-# --- DATABASE CONFIGURATION ---
-# Default paths (will be overridden when called from unified dashboard)
-DB_DIR = "data"
-DB_PATH = os.path.join(DB_DIR, "monitoring.db")
+# --- 1. LOGGING CONFIG ---
+LOG_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs", "pipeline.log"))
+os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_PATH),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("Dashboard")
 
-def set_db_path(path):
-    global DB_PATH
-    DB_PATH = path
-    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+st.set_page_config(page_title="Execute Pipeline Pro", page_icon="🚀", layout="wide")
+
+# ── CONFIG & DB ───────────────────────────────────────────────────────────────
+DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "monitoring.db"))
+DT_FMT = '%Y-%m-%d %H:%M:%S'
 
 def init_db():
-    """Initializes the tracking database and handles schema migrations."""
-    conn = sqlite3.connect(DB_PATH)
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS metrics
-                 (timestamp DATETIME, 
-                  cpu_pct REAL, 
-                  mem_mb REAL,
-                  mem_pct REAL)''')
-    
-    c.execute('''CREATE TABLE IF NOT EXISTS extraction_logs
-                 (timestamp DATETIME,
-                  end_time DATETIME,
-                  method TEXT,
-                  records INTEGER,
-                  processes INTEGER,
-                  status TEXT,
-                  workers INTEGER,
-                  batches INTEGER)''')
-    
-    c.execute('''CREATE TABLE IF NOT EXISTS sensor_data
-                 (timestamp DATETIME,
-                  ph_level REAL,
-                  ec_tds REAL,
-                  water_temp REAL,
-                  air_temp REAL,
-                  humidity INTEGER,
-                  water_level INTEGER)''')
-    
-    # Resilient schema check/updates
+    # Enable WAL mode for concurrent read/write
+    c.execute("PRAGMA journal_mode=WAL")
+    c.execute("""CREATE TABLE IF NOT EXISTS metrics
+                 (timestamp DATETIME, cpu_pct REAL, mem_mb REAL, mem_pct REAL)""")
+    c.execute("""CREATE TABLE IF NOT EXISTS execution_logs
+                 (timestamp DATETIME, end_time DATETIME, method TEXT,
+                  records INTEGER, processes INTEGER, batches INTEGER, status TEXT)""")
+    c.execute("""CREATE TABLE IF NOT EXISTS sensor_data
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp DATETIME, ph_level REAL, ec_tds REAL,
+                  water_temp REAL, air_temp REAL, humidity INTEGER, water_level INTEGER)""")
+    # Cleanup stale runs
+    c.execute(
+        "UPDATE execution_logs SET status='STALE', end_time=? WHERE status='RUNNING'",
+        (datetime.now().strftime(DT_FMT),)
+    )
+    conn.commit()
+    conn.close()
+
+def now_str() -> str:
+    return datetime.now().strftime(DT_FMT)
+
+def log_metrics(cpu, mem_mb, mem_pct):
     try:
-        c.execute("PRAGMA table_info(extraction_logs)")
-        cols = [col[1] for col in c.fetchall()]
-        if 'workers' not in cols:
-            c.execute("ALTER TABLE extraction_logs ADD COLUMN workers INTEGER")
-        if 'batches' not in cols:
-            c.execute("ALTER TABLE extraction_logs ADD COLUMN batches INTEGER")
-    except sqlite3.OperationalError:
-        pass
+        conn = sqlite3.connect(DB_PATH, timeout=30.0)
+        conn.execute(
+            "INSERT INTO metrics (timestamp, cpu_pct, mem_mb, mem_pct) VALUES (?,?,?,?)",
+            (now_str(), cpu, mem_mb, mem_pct)
+        )
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        logger.error(f"Metrics Log Error: {e}")
 
-    conn.commit()
-    conn.close()
-
-def log_metrics(cpu, mem, pct, ts=None):
-    """Logs resource telemetry snapshot."""
+def get_metrics_latest(hours=1):
     conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    if ts:
-        c.execute("INSERT INTO metrics (timestamp, cpu_pct, mem_mb, mem_pct) VALUES (?, ?, ?, ?)", (ts, cpu, mem, pct))
-    else:
-        c.execute("INSERT INTO metrics (timestamp, cpu_pct, mem_mb, mem_pct) VALUES (datetime('now', 'localtime'), ?, ?, ?)", (cpu, mem, pct))
-    conn.commit()
+    cutoff = (datetime.now() - timedelta(hours=hours)).strftime(DT_FMT)
+    df = pd.read_sql_query(
+        "SELECT * FROM metrics WHERE timestamp >= ? ORDER BY timestamp ASC",
+        conn, params=(cutoff,)
+    )
     conn.close()
+    if not df.empty:
+        df['timestamp'] = pd.to_datetime(df['timestamp'], format=DT_FMT, errors='coerce')
+    return df
 
-def get_history(hours):
-    """Retrieves historical metrics for observation window."""
-    conn = sqlite3.connect(DB_PATH)
+def get_sensor_data(limit=50):
+    conn = sqlite3.connect(DB_PATH, timeout=5.0)
     try:
         df = pd.read_sql_query(
-            f"SELECT * FROM metrics WHERE timestamp >= datetime('now', 'localtime', '-{hours} hours') ORDER BY timestamp ASC", 
-            conn, parse_dates=['timestamp']
+            "SELECT id, timestamp, ph_level, ec_tds, water_temp, air_temp, humidity, water_level "
+            "FROM sensor_data ORDER BY id DESC LIMIT ?",
+            conn, params=(limit,)
         )
-    except Exception:
+    except:
         df = pd.DataFrame()
-    conn.close()
+    finally:
+        conn.close()
     return df
 
-def get_latest_data(limit=50):
-    """Fetches sensor records for preview."""
-    conn = sqlite3.connect(DB_PATH)
+def get_execution_logs():
+    conn = sqlite3.connect(DB_PATH, timeout=5.0)
     try:
-        df = pd.read_sql_query(f"SELECT * FROM sensor_data ORDER BY timestamp DESC LIMIT {limit}", conn)
-    except Exception:
-        df = pd.DataFrame(columns=['timestamp', 'ph_level', 'ec_tds', 'water_temp', 'air_temp', 'humidity', 'water_level'])
-    conn.close()
+        df = pd.read_sql_query("""
+            SELECT
+                timestamp   AS start_time,
+                method,
+                records     AS count,
+                processes   AS workers,
+                batches,
+                status,
+                CASE
+                    WHEN end_time IS NOT NULL AND end_time != ''
+                    THEN ROUND((julianday(end_time) - julianday(timestamp)) * 86400, 1)
+                    ELSE NULL
+                END AS duration_s
+            FROM execution_logs
+            ORDER BY timestamp DESC LIMIT 20""",
+            conn
+        )
+    except:
+        df = pd.DataFrame()
+    finally:
+        conn.close()
     return df
 
-def get_extraction_logs(limit=10):
-    """Retrieves history of extraction attempts."""
-    conn = sqlite3.connect(DB_PATH)
-    try:
-        query = f"""
-            SELECT rowid as sno, timestamp as start_time, end_time, method, records as count, 
-                   processes, workers, batches, status,
-                   (julianday(end_time) - julianday(timestamp)) * 86400 as duration_sec
-            FROM extraction_logs ORDER BY start_time DESC LIMIT {limit}
-        """
-        df = pd.read_sql_query(query, conn)
-    except Exception:
-        df = pd.DataFrame(columns=['sno', 'start_time', 'end_time', 'method', 'count', 'processes', 'workers', 'batches', 'status', 'duration_sec'])
-    conn.close()
-    return df
-
-def log_extraction_run(method, records, processes, workers, batches, status):
-    """Records an extraction attempt."""
-    conn = sqlite3.connect(DB_PATH)
+def log_run(method, records, processes, batches):
+    conn = sqlite3.connect(DB_PATH, timeout=15.0)
     c = conn.cursor()
     c.execute(
-        "INSERT INTO extraction_logs (timestamp, method, records, processes, workers, batches, status) VALUES (datetime('now', 'localtime'), ?, ?, ?, ?, ?, ?)",
-        (method, records, processes, workers, batches, status)
+        "INSERT INTO execution_logs (timestamp, method, records, processes, batches, status) "
+        "VALUES (?,?,?,?,?,'RUNNING')",
+        (now_str(), method, records, processes, batches)
     )
-    rowid = c.lastrowid
+    rid = c.lastrowid
     conn.commit()
     conn.close()
-    return rowid
+    return rid
 
-def update_extraction_status(rowid, status):
-    """Updates status/end_time for a run."""
+def finish_run(rowid, status):
+    conn = sqlite3.connect(DB_PATH, timeout=15.0)
+    conn.execute(
+        "UPDATE execution_logs SET status=?, end_time=? WHERE rowid=?",
+        (status, now_str(), rowid)
+    )
+    conn.commit()
+    conn.close()
+
+def get_active_runs():
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
-    c.execute("UPDATE extraction_logs SET status = ?, end_time = datetime('now', 'localtime') WHERE rowid = ?", (status, rowid))
-    conn.commit()
+    c.execute("SELECT count(*) FROM execution_logs WHERE status='RUNNING'")
+    count = c.fetchone()[0]
     conn.close()
+    return count
 
-def run_generator_wrapper(method, records, processes, gen_params, rowid):
-    """Thread wrapper for data generation."""
-    try:
-        generator = GenerateData(**gen_params)
-        generator.start_generating()
-        update_extraction_status(rowid, "SUCCESS")
-    except Exception as e:
-        update_extraction_status(rowid, f"FAILED: {str(e).split('\\n')[0][:50]}")
-
-def render_dashboard(stage_name="Extract", api_port=8000):
-    """Main dashboard rendering entry point."""
-    global DB_PATH
-    init_db()
-
-    # --- THEME & STYLING ---
-    st.markdown("""
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap');
-        [data-testid="stStatusWidget"] { visibility: hidden !important; }
-        #stDecoration { display: none !important; }
-        .stApp > header { background: transparent !important; }
-        .stApp { background-color: #0d0d0f; color: #e2e2e7; font-family: 'Outfit', sans-serif !important; }
-        .resource-card-small {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px);
-            border: 1px solid rgba(173, 212, 229, 0.1); border-radius: 12px;
-            padding: 12px 15px; margin-bottom: 10px; display: flex; flex-direction: column;
-            justify-content: space-between; min-height: 130px; transition: transform 0.3s ease;
-        }
-        .resource-card-small:hover { transform: translateY(-3px); border: 1px solid #017CC3; }
-        .card-label { font-size: 0.6rem; color: #017CC3; text-transform: uppercase; font-weight: 500; letter-spacing: 1px; }
-        .card-value-small { font-size: 1.4rem; font-weight: 600; color: #white; margin-bottom: 0.25rem; }
-        .progress-bar { background: rgba(1, 124, 195, 0.1); height: 6px; border-radius: 3px; width: 100%; overflow: hidden; }
-        .progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #ADD4E5, #017CC3); }
-        .section-title-wrap { display: flex; align-items: center; gap: 15px; margin-bottom: 1rem; }
-        .section-title-text { font-size: 1.5rem; font-weight: 600; color: #017CC3; margin: 0; }
-        .section-title-line { flex-grow: 1; height: 1px; background: linear-gradient(90deg, #ADD4E5, transparent); }
-    </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown(f'''
-    <div class="section-title-wrap">
-        <div style="width: 5px; height: 30px; background: #017CC3; border-radius: 3px;"></div>
-        <h2 class="section-title-text">{stage_name} Pipeline Diagnostics</h2>
-        <div class="section-title-line"></div>
-    </div>
-    ''', unsafe_allow_html=True)
-
-    col_tele, col_params = st.columns([2, 1], gap="large")
-
-    with col_params:
-        with st.container(border=True):
-            st.markdown('<p style="font-size: 0.7rem; color: #ADD4E5; font-weight: 600;">CONFIG</p>', unsafe_allow_html=True)
-            sc1, sc2 = st.columns(2)
-            num_records = sc1.number_input("Records", 1, 1000000, 100, key=f"recs_{stage_name}")
-            num_processes = sc1.slider("Processes", 1, 8, 1, key=f"proc_{stage_name}")
-            method = sc2.selectbox("Method", ["stream", "batch"], key=f"meth_{stage_name}")
-            if method == "stream":
-                thread_workers = sc2.slider("Threads", 1, 20, 5, key=f"thr_{stage_name}")
-            else:
-                num_batches = sc2.number_input("Batches", 1, 100, 5, key=f"bat_{stage_name}")
-            
-            if st.button(f"Start {stage_name}", use_container_width=True, type="primary", key=f"btn_{stage_name}"):
-                gen_params = {"num_records": num_records, "num_process": num_processes, "method": method, "port": api_port}
-                if method == "stream": gen_params["thread_workers"] = thread_workers
-                else: gen_params["num_batches"] = num_batches
-                
-                rid = log_extraction_run(method, num_records, num_processes, 
-                                       thread_workers if method == "stream" else None,
-                                       num_batches if method == "batch" else None, "RUNNING")
-                threading.Thread(target=run_generator_wrapper, args=(method, num_records, num_processes, gen_params, rid), daemon=True).start()
-                st.toast(f"Initiated {stage_name} pipeline...")
-
-    def get_metrics():
+# ── HARDWARE ENGINE (PIPELINE NATIVE + PULSE) ─────────────────────────────────
+def get_system_stats():
+    """Reports Dashboard + Worker tree usage vs 512MB / 1.0 Core limit with EMA smoothing."""
+    # Ensure persistent process tracking in session state
+    if 'proc_tree' not in st.session_state:
         try:
-            client = docker.from_env()
-            container = client.containers.get("sandbox")
-            stats = next(container.stats(stream=False))
-            
-            cpu_delta = stats["cpu_stats"]["cpu_usage"]["total_usage"] - stats["precpu_stats"].get("cpu_usage", {}).get("total_usage", 0)
-            sys_delta = stats["cpu_stats"].get("system_cpu_usage", 0) - stats["precpu_stats"].get("system_cpu_usage", 0)
-            online_cpus = stats["cpu_stats"].get("online_cpus", 1)
-            cpu_pct = (cpu_delta / sys_delta) * online_cpus * 100.0 if sys_delta > 0 else 0.0
-            
-            mem_usage = stats["memory_stats"].get("usage", 0)
-            mem_mb = mem_usage / (1024 * 1024)
-            mem_pct = (mem_usage / stats["memory_stats"].get("limit", 1)) * 100.0
-            
-            return {"status": "Active", "cpu": cpu_pct, "mem_mb": mem_mb, "mem_pct": mem_pct, "ts": stats.get("read")}
+            main_p = psutil.Process()
+            st.session_state.proc_tree = [main_p] + main_p.children(recursive=True)
+            # Pre-initialize CPU counters
+            for p in st.session_state.proc_tree: p.cpu_percent(None)
         except:
-            return {"status": "Inactive", "cpu": 0.0, "mem_mb": 0.0, "mem_pct": 0.0, "ts": None}
-
-    with col_tele:
-        time_filter = st.selectbox("Window", ["1H", "4H", "12H"], index=0, key=f"win_{stage_name}")
-        
-        @st.fragment(run_every=2)
-        def display_metrics():
-            m = get_metrics()
-            log_metrics(m['cpu'], m['mem_mb'], m['mem_pct'], m['ts'])
+            st.session_state.proc_tree = []
             
-            c1, c2 = st.columns([3, 1])
-            with c1:
-                df = get_history(int(time_filter[:-1]))
-                if not df.empty:
-                    fig = go.Figure()
-                    fig.add_trace(go.Scatter(x=df['timestamp'], y=df['cpu_pct'], name='CPU', fill='tozeroy', line=dict(color='#017CC3')))
-                    fig.add_trace(go.Scatter(x=df['timestamp'], y=df['mem_mb'], name='RAM', fill='tozeroy', line=dict(color='#ADD4E5'), yaxis='y2'))
-                    fig.update_layout(template="plotly_dark", height=250, margin=dict(l=0, r=0, t=0, b=0), showlegend=False,
-                                    yaxis2=dict(overlaying='y', side='right'))
-                    st.plotly_chart(fig, use_container_width=True, key=f"chart_{stage_name}")
-            with c2:
-                st.markdown(f'''
-                <div class="resource-card-small">
-                    <div class="card-label">CPU</div>
-                    <div class="card-value-small">{m['cpu']:.1f}%</div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: {min(m['cpu'], 100)}%"></div></div>
-                </div>
-                <div class="resource-card-small">
-                    <div class="card-label">RAM</div>
-                    <div class="card-value-small">{m['mem_mb']:.0f}MB</div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: {min(m['mem_pct'], 100)}%"></div></div>
-                </div>
-                ''', unsafe_allow_html=True)
-        display_metrics()
+    if 'ema_cpu' not in st.session_state: st.session_state.ema_cpu = 0.0
+    if 'ema_mem' not in st.session_state: st.session_state.ema_mem = 0.0
 
-    st.markdown('<div style="height: 1rem;"></div>', unsafe_allow_html=True)
+    try:
+        LIMIT_RAM = 2048.0
+        LIMIT_CPU = 4.0
+        
+        # Periodic tree refresh (every ~10s or if empty)
+        if not st.session_state.proc_tree or time.time() % 10 < 0.2:
+            main_p = psutil.Process()
+            st.session_state.proc_tree = [main_p] + main_p.children(recursive=True)
+
+        mem_mb = 0
+        cpu_sum = 0
+        for p in st.session_state.proc_tree:
+            try:
+                if p.is_running():
+                    mem_mb += p.memory_info().rss / (1024**2)
+                    cpu_sum += p.cpu_percent(None)
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+        
+        # Apply heavier smoothing (EMA) for a fluid, professional feel
+        alpha = 0.2 # Lower = smoother, less jumpy
+        st.session_state.ema_cpu = alpha * cpu_sum + (1 - alpha) * st.session_state.ema_cpu
+        st.session_state.ema_mem = alpha * mem_mb + (1 - alpha) * st.session_state.ema_mem
+        
+        cpu_p = min(st.session_state.ema_cpu, 100.0)
+        mem_mb_val = st.session_state.ema_mem
+
+        return {
+            "cpu_pct": cpu_p,
+            "cpu_used": (cpu_p/100)*LIMIT_CPU,
+            "cpu_total": LIMIT_CPU,
+            "mem_pct": min((mem_mb_val/LIMIT_RAM)*100, 100.0),
+            "mem_used": mem_mb_val,
+            "mem_total": LIMIT_RAM
+        }
+    except:
+        return {"cpu_pct": 0, "cpu_used": 0, "cpu_total": 1, "mem_pct": 0, "mem_used": 0, "mem_total": 512}
+
+
+# ── WORKER ────────────────────────────────────────────────────────────────────
+
+def run_generator(params, rid):
+    try:
+        cmd = [
+            sys.executable, "scripts/data_generator.py",
+            "--records", str(params.get("num_records", 500)),
+            "--processes", str(params.get("num_process", 1)),
+            "--method", params.get("method", "stream"),
+            "--batches", str(params.get("num_batches", 1)),
+            "--port", "8000"
+        ]
+        res = subprocess.run(cmd, capture_output=True, text=True)
+        if res.stdout: logger.info(f"Gen Out: {res.stdout.strip()}")
+        if res.stderr: logger.error(f"Gen Err: {res.stderr.strip()}")
+        finish_run(rid, "SUCCESS" if res.returncode == 0 else "FAILED")
+    except Exception as e:
+        logger.exception("Worker Crash")
+        finish_run(rid, "FAILED")
+
+# ── CSS ───────────────────────────────────────────────────────────────────────
+st.markdown("""
+<style>
+    [data-testid="stStatusWidget"], #stDecoration { visibility: hidden; }
+    .stApp { background: #0A0C14 !important; color: #E2E8F0; }
+    .h-metrics-container { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+    .h-metric-box { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 12px 16px; }
+    .h-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .h-title { color: #64748B; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; }
+    .h-val   { color: #F1F5F9; font-size: 0.78rem; font-weight: 500; }
+    .h-bar-bg { width: 100%; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .h-bar-fill { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+    .status-pill { padding: 5px 14px; border-radius: 20px; font-size: 0.62rem; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; text-transform: uppercase; }
+    .status-pill.active { background: rgba(0,229,255,0.08); color: #00E5FF; border: 1px solid rgba(0,229,255,0.4); }
+    .status-pill.idle   { background: rgba(100,116,139,0.1); color: #64748B; border: 1px solid rgba(100,116,139,0.25); }
+    .pulse { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: p-anim 1.4s infinite; }
+    @keyframes p-anim { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .sec-label { font-size: 0.62rem; color: #00E5FF; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 16px 0 8px 0; display: flex; align-items: center; gap: 8px; }
+    .sec-label::after { content: ''; flex: 1; height: 1px; background: rgba(0,229,255,0.1); }
+</style>
+""", unsafe_allow_html=True)
+
+# ── MAIN ──────────────────────────────────────────────────────────────────────
+def main():
+    init_db()
     
-    @st.fragment(run_every=2)
-    def display_data():
-        bl, br = st.columns(2)
-        with bl:
-            st.markdown(f'<p style="font-size: 0.8rem; color: #ADD4E5; font-weight: 600;">{stage_name.upper()} DATA</p>', unsafe_allow_html=True)
-            st.dataframe(get_latest_data(10), hide_index=True, use_container_width=True, height=250)
-        with br:
-            st.markdown(f'<p style="font-size: 0.8rem; color: #ADD4E5; font-weight: 600;">SYSTEM LOGS</p>', unsafe_allow_html=True)
-            log_df = get_extraction_logs(10)
-            if not log_df.empty:
-                log_df['duration'] = log_df['duration_sec'].apply(lambda x: f"{x:.4f}s" if pd.notnull(x) else "---")
-                st.dataframe(log_df[['start_time', 'method', 'count', 'status', 'duration']], hide_index=True, use_container_width=True, height=250)
-    display_data()
+    # Placeholders
+    header_p = st.empty()
+    
+    # ── 1. CONFIGURATION (TOP) ────────────────────────────────────────────────
+    st.markdown('<div class="sec-label">Control Center</div>', unsafe_allow_html=True)
+    with st.container(border=True):
+        c1, c2, c3, c4 = st.columns([1.2, 1, 1, 1], gap="medium")
+        with c1: n_recs = st.number_input("Count", 1, 1000000, 500)
+        with c2: n_proc = st.slider("Workers", 1, 8, 1)
+        with c3: 
+            method = st.selectbox("Mode", ["stream", "batch"])
+            batches = 1
+            if method == "batch":
+                batches = st.number_input("Batches", 1, 100, 1)
+        with c4:
+            st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True) # Spacer
+            if st.button("🚀  Execute Pipeline", use_container_width=True, type="primary"):
+                rid = log_run(method, n_recs, n_proc, batches)
+                params = {"num_records": n_recs, "num_process": n_proc, "method": method, "num_batches": batches}
+                t = threading.Thread(target=run_generator, args=(params, rid), daemon=True)
+                t.start()
+                st.toast("Pipeline Launched!")
+
+    st.markdown('<div class="sec-label">Real-Time Telemetry</div>', unsafe_allow_html=True)
+    col_hud, col_chart = st.columns([0.8, 2.5], gap="large")
+    
+    with col_hud:
+        hud_p = st.empty()
+    with col_chart:
+        chart_p = st.empty()
+
+    st.divider()
+    col_t1, col_t2 = st.columns(2)
+    with col_t1: data_p = st.empty()
+    with col_t2: logs_p = st.empty()
+    st.divider()
+    audit_p = st.empty()
+
+    # ── High-Speed Loop ──
+    while True:
+        m = get_system_stats()
+        log_metrics(m['cpu_pct'], m['mem_used'], m['mem_pct'])
+        active = get_active_runs()
+        
+        status_cls = "active" if active > 0 else "idle"
+        label = f"INGESTING · {active} ACTIVE" if active > 0 else "SYSTEM READY"
+        
+        # 1. Update Header
+        header_p.markdown(f"""
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;">
+            <h2 style="margin:0;font-size:1.4rem;">Midnight <span style="color:#64748B;font-weight:300;">Pro</span> Dashboard</h2>
+            <div class="status-pill {status_cls}"><div class="pulse"></div>{label}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # 2. Update HUD (Vertical Stack next to chart)
+        hud_p.markdown(f"""
+        <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.15);border-radius:12px;padding:18px;text-align:center;">
+                <div style="color:#64748B;font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Current CPU Load</div>
+                <div style="color:#A78BFA;font-size:1.8rem;font-weight:800;">{m['cpu_pct']:.1f}%</div>
+                <div style="color:#475569;font-size:0.65rem;">{m['cpu_used']:.2f} Cores Active</div>
+            </div>
+            <div style="background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.15);border-radius:12px;padding:18px;text-align:center;">
+                <div style="color:#64748B;font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Sandbox Memory</div>
+                <div style="color:#00E5FF;font-size:1.8rem;font-weight:800;">{m['mem_used']:.2f}<span style="font-size:1rem;margin-left:4px;">MB</span></div>
+                <div style="color:#475569;font-size:0.65rem;">{(m['mem_pct'] if m['mem_pct'] <= 100 else 100):.1f}% Unit Capacity</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # 2. Update Charts & Tables
+        df = get_metrics_latest()
+        fig = go.Figure()
+        if not df.empty:
+            # CPU% on Primary Y-Axis (Left)
+            fig.add_trace(go.Scattergl(
+                x=df['timestamp'], y=df['cpu_pct'], 
+                name='CPU Load', 
+                line=dict(color='#A78BFA', width=3),
+                yaxis="y1"
+            ))
+            # RAM% on Secondary Y-Axis (Right)
+            fig.add_trace(go.Scattergl(
+                x=df['timestamp'], y=df['mem_pct'], 
+                name='RAM Usage', 
+                line=dict(color='#00E5FF', width=3),
+                fill='tozeroy', 
+                fillcolor='rgba(0,229,255,0.05)',
+                yaxis="y2"
+            ))
+            
+        fig.update_layout(
+            template="plotly_dark",
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            margin=dict(l=40, r=40, t=10, b=30),
+            height=300,
+            uirevision='const',
+            showlegend=True,
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+            # Fixed 100% Scale for Both Axes
+            yaxis=dict(
+                title="CPU %",
+                range=[0, 100],
+                gridcolor='rgba(255,255,255,0.05)',
+                zeroline=False
+            ),
+            yaxis2=dict(
+                title="RAM %",
+                range=[0, 100],
+                overlaying='y',
+                side='right',
+                gridcolor='rgba(255,255,255,0.05)',
+                zeroline=False
+            ),
+            xaxis=dict(
+                gridcolor='rgba(255,255,255,0.05)',
+                zeroline=False
+            )
+        )
+
+        with chart_p.container():
+            st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+
+
+        with data_p.container():
+            st.markdown('<div class="sec-label">Latest Records</div>', unsafe_allow_html=True)
+            st.dataframe(get_sensor_data(), hide_index=True, use_container_width=True, height=250)
+        
+        with logs_p.container():
+            st.markdown('<div class="sec-label">Run History</div>', unsafe_allow_html=True)
+            st.dataframe(get_execution_logs(), hide_index=True, use_container_width=True, height=250)
+
+        with audit_p.container():
+            st.markdown('<div class="sec-label">Audit Trail</div>', unsafe_allow_html=True)
+            try:
+                with open(LOG_PATH, "r") as f:
+                    st.code("".join(f.readlines()[-10:]), language="log")
+            except: pass
+
+        time.sleep(1) # Smooth ~3 FPS for readable live metrics
 
 if __name__ == "__main__":
-    st.set_page_config(page_title="Data Sandbox", page_icon="✨", layout="wide")
-    render_dashboard()
+    main()

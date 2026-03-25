@@ -1,106 +1,180 @@
 """
-Data Ingestion API
-------------------
-This module provides a FastAPI-based ingestion service to receive data 
-from sensor simulations. It uses Pydantic models for data validation 
-and ensures all incoming records adhere to the expected schema.
+🚀 High-Performance Async Data Ingestion API
+--------------------------------------------
+Architecture Upgrades:
+1. Persistent DB Connection: Eliminates the overhead of opening/closing files.
+2. WAL Mode: Enables concurrent reads while writing.
+3. Queue & Worker Pattern: Endpoints return instantly; a background worker batches DB writes.
 """
 
 from fastapi import FastAPI, HTTPException
+from contextlib import asynccontextmanager
 from pydantic import BaseModel
 from typing import List
 import os
-import sqlite3
-from datetime import datetime
+import aiosqlite
+import asyncio
+import logging
 
-# Initialize FastAPI app
-app = FastAPI(
-    title="Sensor Ingestion API",
-    description="Receives and validates sensor data for the extraction pipeline."
+# --- 1. LOGGING CONFIG ---
+log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs", "pipeline.log"))
+os.makedirs(os.path.dirname(log_path), exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    handlers=[
+        logging.FileHandler(log_path),
+        logging.StreamHandler()
+    ]
 )
+logger = logging.getLogger("API")
 
-# --- DATA SCHEMA ---
-# Pydantic's BaseModel handles automatic data validation and documentation
+# Mute noisy network and server logs for high-volume pipelines
+logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("httpcore").setLevel(logging.WARNING)
+
+# --- 1. DEFINE DATA SCHEMA ---
 class SensorData(BaseModel):
-    """
-    Schema for a single sensor observation record.
-    Matches the output of data_generator.py.
-    """
-    timestamp: str          # Format: YYYY-MM-DD HH:MM:SS
-    ph_level: float         # 0.0 - 14.0
-    ec_tds: float           # Electrical Conductivity
-    water_temp: float       # In Celsius
-    air_temp: float         # In Celsius
-    humidity: int           # 0 - 100%
-    water_level: int        # 0 - 100%
+    timestamp: str
+    ph_level: float
+    ec_tds: float
+    water_temp: float
+    air_temp: float
+    humidity: int
+    water_level: int
 
-# --- DATABASE LOGIC ---
-# In a real scenario, this would write to the same monitoring.db 
-# used by the dashboard to show end-to-end data flow.
+# --- 2. GLOBAL STATE & CONFIG ---
 DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "monitoring.db"))
 
-def save_to_db(data: SensorData):
-    """
-    Persists a single validated sensor record.
-    """
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        c = conn.cursor()
-        c.execute("""
-            INSERT INTO sensor_data (timestamp, ph_level, ec_tds, water_temp, air_temp, humidity, water_level) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        """, (data.timestamp, data.ph_level, data.ec_tds, data.water_temp, data.air_temp, data.humidity, data.water_level))
-        conn.commit()
-        conn.close()
-    except Exception as e:
-        print(f"Database insertion failed: {e}")
+# Global variables for the persistent connection and the ingestion queue
+db_conn = None
+ingestion_queue = asyncio.Queue()
 
-def save_bulk_to_db(records: List[SensorData]):
+# --- 3. BACKGROUND WORKER (THE ENGINE) ---
+async def database_worker():
     """
-    Persists a list of records using a single transaction.
-    Highly efficient for batch operations.
+    High-Speed Ingestion Engine:
+    Gathers records in memory and performs a single bulk insert periodically.
     """
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        c = conn.cursor()
-        data_tuples = [
-            (r.timestamp, r.ph_level, r.ec_tds, r.water_temp, r.air_temp, r.humidity, r.water_level) 
-            for r in records
-        ]
-        c.executemany("""
-            INSERT INTO sensor_data (timestamp, ph_level, ec_tds, water_temp, air_temp, humidity, water_level) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        """, data_tuples)
-        conn.commit()
-        conn.close()
-    except Exception as e:
-        print(f"Bulk database insertion failed: {e}")
+    batch = []
+    MAX_BATCH_SIZE = 1000
+    FLUSH_INTERVAL = 1.0
 
-# --- API ENDPOINTS ---
+    while True:
+        try:
+            # 1. Wave-Collect: Try to gather many records within the FLUSH_INTERVAL
+            try:
+                if not batch:
+                    # Wait for the first record indefinitely to save idle CPU
+                    record = await ingestion_queue.get()
+                    batch.append(record)
+                
+                # After the first record, try to pack as many as possible within the interval
+                while len(batch) < MAX_BATCH_SIZE:
+                    # Wait for next records but don't block past the flush interval
+                    record = await asyncio.wait_for(ingestion_queue.get(), timeout=FLUSH_INTERVAL)
+                    batch.append(record)
+            except (asyncio.TimeoutError, TimeoutError):
+                pass # Trigger flush after interval
+
+            # 2. Database Flush
+            if batch:
+                data_tuples = [
+                    (r.timestamp, r.ph_level, r.ec_tds, r.water_temp, r.air_temp, r.humidity, r.water_level)
+                    for r in batch
+                ]
+                await db_conn.executemany("""
+                    INSERT INTO sensor_data (timestamp, ph_level, ec_tds, water_temp, air_temp, humidity, water_level) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                """, data_tuples)
+                await db_conn.commit()
+                
+                # Signal completion for metrics/logs
+                for _ in range(len(batch)):
+                    ingestion_queue.task_done()
+                
+                logger.info(f"💾 Flush Complete: {len(batch)} records committed to monitoring.db")
+                batch.clear()
+
+        except asyncio.CancelledError:
+            # Shutdown sequence
+            break
+        except Exception as e:
+            logger.error(f"❌ Worker DB Error: {repr(e)}")
+            batch.clear()
+            await asyncio.sleep(1) # Grace period before retry
+
+# --- 4. LIFESPAN MANAGER (STARTUP/SHUTDOWN) ---
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Replaces @app.on_event. Safely manages the database connection and background worker.
+    """
+    global db_conn
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+    
+    # Open ONE persistent connection
+    db_conn = await aiosqlite.connect(DB_PATH)
+    await db_conn.execute("PRAGMA journal_mode=WAL")
+    await db_conn.commit()
+    
+    # Enable WAL mode for high concurrency
+    await db_conn.execute("PRAGMA journal_mode=WAL;")
+    await db_conn.execute("PRAGMA synchronous=NORMAL;")
+    
+    # Initialize Schema
+    await db_conn.execute("""
+        CREATE TABLE IF NOT EXISTS sensor_data (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            timestamp TEXT, ph_level REAL, ec_tds REAL, 
+            water_temp REAL, air_temp REAL, humidity INTEGER, water_level INTEGER
+        )
+    """)
+    await db_conn.commit()
+
+    # Start the background database worker
+    worker_task = asyncio.create_task(database_worker())
+    
+    yield # --- THIS IS WHERE THE API ACTUALLY RUNS ---
+
+    # Shutdown sequence
+    worker_task.cancel()
+    try:
+        await worker_task
+    except asyncio.CancelledError:
+        pass
+    await db_conn.close()
+
+# --- 5. INITIALIZE API ---
+app = FastAPI(
+    title="Async Sensor Ingestion API",
+    description="Designed for high-throughput sensor data ingestion.",
+    lifespan=lifespan
+)
+
+# --- 6. API ENDPOINTS (THE INTAKE VALVES) ---
 
 @app.post("/receive-data", status_code=201)
 async def receive_data(record: SensorData):
     """
-    Endpoint for sequential (stream) data ingestion.
+    STREAMING ENDPOINT: Instantly drops the record in memory and returns.
+    Response time: < 1 millisecond.
     """
-    save_to_db(record)
-    return {"status": "success", "message": "Record ingested successfully"}
+    # Simply put the data in the queue for the background worker to handle
+    await ingestion_queue.put(record)
+    return {"status": "success", "info": "Record queued for asynchronous batch insertion"}
 
 @app.post("/receive-bulk-data", status_code=201)
 async def receive_bulk_data(records: List[SensorData]):
     """
-    Endpoint for bulk-loaded (batch) data ingestion.
+    BATCH ENDPOINT: Drops a massive list of readings directly into the queue.
     """
-    if records:
-        save_bulk_to_db(records)
-    return {
-        "status": "success", 
-        "count": len(records),
-        "message": "Batch ingested successfully"
-    }
+    for record in records:
+        await ingestion_queue.put(record)
+            
+    return {"status": "success", "count": len(records), "info": "Bulk records queued"}
 
 if __name__ == "__main__":
     import uvicorn
-    # Start the server locally for testing
-    # Inside the container, this is handled by entrypoint.sh
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("api_setup:app", host="0.0.0.0", port=8000, reload=True)
