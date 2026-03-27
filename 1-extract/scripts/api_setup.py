@@ -49,7 +49,7 @@ DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", 
 
 # Global variables for the persistent connection and the ingestion queue
 db_conn = None
-ingestion_queue = asyncio.Queue()
+ingestion_queue = asyncio.Queue(maxsize=1000000) # Gigantic queue for bulk stress tests
 
 # --- 3. BACKGROUND WORKER (THE ENGINE) ---
 async def database_worker():
@@ -58,27 +58,29 @@ async def database_worker():
     Gathers records in memory and performs a single bulk insert periodically.
     """
     batch = []
-    MAX_BATCH_SIZE = 1000
-    FLUSH_INTERVAL = 1.0
+    MAX_BATCH_SIZE = 5000
+    FLUSH_INTERVAL = 0.1
 
     while True:
         try:
-            # 1. Wave-Collect: Try to gather many records within the FLUSH_INTERVAL
-            try:
-                if not batch:
-                    # Wait for the first record indefinitely to save idle CPU
-                    record = await ingestion_queue.get()
+            # 1. High-Speed Intake
+            record = await ingestion_queue.get()
+            batch.append(record)
+            
+            # GHOST-BREATHE: Only sleep if the queue is shallow. 
+            # If a tsunami of data is already here, skip the sleep and VACCUUM!
+            if ingestion_queue.qsize() < 1000:
+                await asyncio.sleep(FLUSH_INTERVAL)
+            
+            # 2. Fast-Grabbing: Drain the bucket at light speed
+            while len(batch) < MAX_BATCH_SIZE:
+                try:
+                    record = ingestion_queue.get_nowait()
                     batch.append(record)
-                
-                # After the first record, try to pack as many as possible within the interval
-                while len(batch) < MAX_BATCH_SIZE:
-                    # Wait for next records but don't block past the flush interval
-                    record = await asyncio.wait_for(ingestion_queue.get(), timeout=FLUSH_INTERVAL)
-                    batch.append(record)
-            except (asyncio.TimeoutError, TimeoutError):
-                pass # Trigger flush after interval
-
-            # 2. Database Flush
+                except asyncio.QueueEmpty:
+                    break
+                    
+            # 3. Database Flush (THE BULK STRIKE)
             if batch:
                 data_tuples = [
                     (r.timestamp, r.ph_level, r.ec_tds, r.water_temp, r.air_temp, r.humidity, r.water_level)
@@ -101,9 +103,11 @@ async def database_worker():
             # Shutdown sequence
             break
         except Exception as e:
-            logger.error(f"❌ Worker DB Error: {repr(e)}")
+            msg = f"❌ [CRITICAL] Worker DB Error: {repr(e)}"
+            print(msg) # Hit the STDOUT directly
+            logger.error(msg)
             batch.clear()
-            await asyncio.sleep(1) # Grace period before retry
+            await asyncio.sleep(2) # Grace period before retry - IT WILL RECOVER
 
 # --- 4. LIFESPAN MANAGER (STARTUP/SHUTDOWN) ---
 @asynccontextmanager
@@ -159,21 +163,26 @@ app = FastAPI(
 async def receive_data(record: SensorData):
     """
     STREAMING ENDPOINT: Instantly drops the record in memory and returns.
-    Response time: < 1 millisecond.
     """
-    # Simply put the data in the queue for the background worker to handle
-    await ingestion_queue.put(record)
-    return {"status": "success", "info": "Record queued for asynchronous batch insertion"}
+    # Visibility Pulse
+    if ingestion_queue.qsize() % 1000 == 0:
+        print(f"📡 [Stream Intake] Queue Depth: {ingestion_queue.qsize()}")
+        
+    ingestion_queue.put_nowait(record)
+    return {"status": "success", "info": "Record queued"}
 
 @app.post("/receive-bulk-data", status_code=201)
 async def receive_bulk_data(records: List[SensorData]):
     """
     BATCH ENDPOINT: Drops a massive list of readings directly into the queue.
     """
+    count = len(records)
+    logger.info(f"🌊 [Bulk Intake] Receiving {count} records into the memory pipe...")
+    
     for record in records:
-        await ingestion_queue.put(record)
+        ingestion_queue.put_nowait(record)
             
-    return {"status": "success", "count": len(records), "info": "Bulk records queued"}
+    return {"status": "success", "count": count, "info": "Bulk records queued"}
 
 if __name__ == "__main__":
     import uvicorn

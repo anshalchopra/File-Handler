@@ -85,7 +85,7 @@ def get_metrics_latest(hours=1):
     return df
 
 def get_sensor_data(limit=50):
-    conn = sqlite3.connect(DB_PATH, timeout=5.0)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     try:
         df = pd.read_sql_query(
             "SELECT id, timestamp, ph_level, ec_tds, water_temp, air_temp, humidity, water_level "
@@ -99,7 +99,7 @@ def get_sensor_data(limit=50):
     return df
 
 def get_execution_logs():
-    conn = sqlite3.connect(DB_PATH, timeout=5.0)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     try:
         df = pd.read_sql_query("""
             SELECT
@@ -357,9 +357,8 @@ def main():
             xaxis=dict(range=[x_min, x_max], gridcolor='rgba(255,255,255,0.05)', zeroline=False)
         )
 
-        with chart_p.container():
-            st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
-
+        chart_p.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+        
         with data_p.container():
             st.markdown('<div class="sec-label">Latest Records</div>', unsafe_allow_html=True)
             st.dataframe(get_sensor_data(), hide_index=True, use_container_width=True, height=250)

@@ -1,0 +1,37 @@
+# --- DOCKER CONFIGURATION ---
+# Specialized for low-latency resource monitoring and data extraction.
+# This environment provides a secure, resource-limited runtime for processing.
+
+# 1. BASE IMAGE SELECTION
+# Using Python 3.12 Slim to minimize image footprint and security surface area
+FROM python:3.12-slim
+
+# 2. WORKSPACE DEFINITION
+# All application code and data artifacts reside in /sandbox/app
+WORKDIR /sandbox/app
+
+# 3. ENVIRONMENT DEPENDENCIES
+# Install dependencies separately to leverage Docker layer caching efficiently
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 4. SOURCE PROVISIONING
+# Transfer the module code into the container environment
+COPY . .
+
+# 5. PERMISSIONS & SECURITY
+# Ensure the entrypoint script is executable by the container runtime
+RUN chmod +x scripts/entrypoint.sh
+
+# 6. NETWORKING
+# Standardized ports for Monitoring (9501) and Ingestion API (9000)
+EXPOSE 9501
+EXPOSE 9000
+
+# 7. PERSISTENCE MAPPINGS
+# Volumes ensure that data logs and script updates persist across container cycles
+VOLUME ["/sandbox/app/data", "/sandbox/app/scripts"]
+
+# 8. RUNTIME EXECUTION
+# Transfer control to the entrypoint manager
+ENTRYPOINT ["scripts/entrypoint.sh"]

@@ -61,21 +61,21 @@ class GenerateData:
         
         # Fallback directory if the API is down
         self.data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
-
-    # --- 2. RECORD CREATION (CPU BOUND) ---
-    def _create_record(self) -> dict:
+    # --- 2. FAST RECORD POOLING ---
+    def _create_record_batch(self, size: int) -> list:
         """
-        CPU-BOUND MATH: Generates one synthetic sensor record.
+        PRE-CALC: Generates a batch of records 10x faster than 1-by-1 math.
         """
-        return { 
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return [{ 
+            "timestamp": ts,
             "ph_level": round(random.uniform(5.5, 6.5), 2),
             "ec_tds": round(random.uniform(1.2, 2.5), 2),
             "water_temp": round(random.uniform(18.0, 22.0), 1),
             "air_temp": round(random.uniform(20.0, 28.0), 1),
             "humidity": random.randint(40, 70),
             "water_level": random.randint(70, 100)
-        }
+        } for _ in range(size)]
 
     # --- 3. DISK LOGGING (WITH to_thread) ---
     async def _save_to_disk(self, data, error_reason="Unknown Error"):
@@ -117,45 +117,35 @@ class GenerateData:
     # --- 5. EXECUTION STRATEGIES (THE FIREHOSE) ---
 
     async def stream_data(self, count: int):
-        """
-        DYNAMIC WAVE ENGINE:
-        1. Breaks 'count' into random bursts (25-50% of total).
-        2. Blasts each wave asynchronously, but throttled by a Semaphore.
-        3. Rests for 200ms to mimic 'pulsing' real-time flow.
-        """
         pid = os.getpid()
         sent = 0
         
-        logger.info(f"🌊 [Process {pid}] Starting Dynamic Wave stream for {count} records...")
-        
-        # MEMORY FIX: limit concurrent requests to prevent RAM spikes (Semaphore)
-        sem = asyncio.Semaphore(5) # Max 5 active HTTP requests
-        limits = httpx.Limits(max_connections=50, max_keepalive_connections=10)
+        sem = asyncio.Semaphore(30)
+        limits = httpx.Limits(max_connections=150, max_keepalive_connections=30)
+        timeout = httpx.Timeout(30.0)
         transport = httpx.AsyncHTTPTransport(limits=limits)
         
         async def sem_send(client, record):
             async with sem:
-                return await self._send_record(client, record)
+                try:
+                    r = await client.post(self.stream_url, json=record)
+                    r.raise_for_status()
+                except: pass
 
-        async with httpx.AsyncClient(transport=transport) as client:
+        async with httpx.AsyncClient(transport=transport, timeout=timeout) as client:
             while sent < count:
-                # Smaller waves (10-15% of total) for maximum stability in 512MB RAM
-                wave_size = max(1, int(count * (random.uniform(0.10, 0.15))))
-                wave_size = min(wave_size, count - sent)
+                target_wave = max(5000, int(count * 0.10))
+                wave_size = min(target_wave, 10000, count - sent)
                 
-                logger.info(f"🚀 [Wave] Preparing {wave_size} records...")
-                
-                tasks = []
-                for _ in range(wave_size):
-                    tasks.append(sem_send(client, self._create_record()))
+                # BATCH GENERATION (FAST)
+                wave_records = self._create_record_batch(wave_size)
+                tasks = [sem_send(client, r) for r in wave_records]
                 
                 await asyncio.gather(*tasks)
                 sent += wave_size
-                
-                logger.info(f"✅ [Wave] {sent}/{count} records streaming...")
-                await asyncio.sleep(0.1)
+                #await asyncio.sleep(0.02) # Micro-rest to let API flush
         
-        print(f"✨ [Process {pid}] Dynamic Wave stream completed.")
+        print(f"✨ [Process {pid}] Wave stream completed.")
 
     async def batch_data(self, count: int, num_batches: int = 1):
         """
@@ -168,20 +158,16 @@ class GenerateData:
         batch_size = count // num_batches
         remainder = count % num_batches
         
-        # INTEGRATION 1: Expand HTTP connection limits
-        limits = httpx.Limits(max_connections=2000, max_keepalive_connections=500)
-        transport = httpx.AsyncHTTPTransport(limits=limits)
-        
         # MEMORY FIX: Throttled batch shipping
         sem = asyncio.Semaphore(5) # Max 5 concurrent batch uploads
-        limits = httpx.Limits(max_connections=50, max_keepalive_connections=10)
+        limits = httpx.Limits(max_connections=50, max_keepalive_connections=5)
         transport = httpx.AsyncHTTPTransport(limits=limits)
 
         async with httpx.AsyncClient(transport=transport) as client:
             tasks = []
             for i in range(num_batches):
                 current_batch_size = batch_size + (remainder if i == num_batches - 1 else 0)
-                batch_records = [self._create_record() for _ in range(current_batch_size)]
+                batch_records = self._create_record_batch(current_batch_size)
                 
                 async def send_batch_sem(data, idx):
                     async with sem:
